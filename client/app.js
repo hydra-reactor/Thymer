@@ -25,6 +25,7 @@ angular.module('thymer', [
       method: 'GET',
       url: '/api/recipes'
     }).then(function(res) {
+      console.log('Recipes: ', res.data);
       return res.data;
     });
   };
@@ -40,11 +41,12 @@ angular.module('thymer', [
   };
 
   // get request to get a specific recipe by id
-  var getRecipe = function(id) {
+  var getRecipeById = function(id) {
     return $http ({
       method: 'GET',
       url: '/api/recipe/' + id
     }).then(function(res) {
+      console.log('getRecipeById res.data: ', res.data);
       return res.data;
     });
   };
@@ -77,6 +79,7 @@ angular.module('thymer', [
     getRecipes: getRecipes,
     setCurrentRecipe: setCurrentRecipe,
     getCurrentRecipe: getCurrentRecipe,
+    getRecipeById: getRecipeById,
     visible: visible
   };
 });

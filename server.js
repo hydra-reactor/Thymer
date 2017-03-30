@@ -43,6 +43,7 @@ app.get('/api/recipe/:id', function(req, res, next) {
     if (err) {
       console.log('Error: ', err);
     } else {
+      console.log('recipe: ', recipe);
       res.status(200).json(recipe);
     }
   });

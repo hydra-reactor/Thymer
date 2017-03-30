@@ -47,4 +47,18 @@ angular.module('thymer.viewRecipe', [])
 
 
   $scope.comments = [{username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'}, {username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'},{username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'},{username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'}];
+
+  // get request to get a specific recipe by id
+  $scope.getRecipeById = function(id) {
+    return $http ({
+      method: 'GET',
+      url: '/api/recipe/' + id
+    }).then(function(res) {
+      console.log('getRecipeById res.data: ', res.data);
+      $scope.recipeInfo = res.data;
+      return res.data;
+    });
+  };
+
+  $scope.getRecipeById($scope.id);
 });
