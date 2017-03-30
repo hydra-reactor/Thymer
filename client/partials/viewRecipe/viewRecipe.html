@@ -1,0 +1,89 @@
+<!--Nav Bar-->
+<ul class="nav nav-tabs nav-bar">
+  <li class="nav-font"><a href="#/index">Home</a></li>
+  <li class="nav-font"><a href="#/newRecipe">New Recipe</a></li>
+  <li class="nav-font"><a href="#/searchRecipes">All Recipes</a></li>
+  <li class="nav-font cookingTab"><a href="#/cooking">Cooking</a></li>
+  <img class="logo" align="right" src="../Logo-2.png">
+</ul>
+<br>
+
+
+<!--View Recipe Page-->
+
+<div class="container">
+  <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 newRecipeContainer">
+    <h1 style='text-align: center;''>{{title}}</h1>
+    <div class='row' style='text-align: center;'>
+      <div class='col-xs-4'>
+        <p>Author: {{author}}</p>
+        <p>Cook Time: {{timeDisplay}}</p>
+        <p>Serves: {{servings}}</p>
+        <p>Cuisine: {{cuisine}}</p>
+
+        <div style="text-align: center;">
+          <button ng-click="submitRecipe()" style="border-radius:5px;" class="bg-primary submit-recipe"> Start Cooking!</button>
+        </div>
+      </div>
+      <div class='col-xs-8'>
+        <div class='newRecipeContainer'>
+          <img src={{image}} style='max-width: 100%;
+      max-height: 100%;''>
+        </div>
+      </div>
+    </div>
+
+    <h4 style='text-align: center;'>{{description}}</h4>
+
+<!-- ingredients and steps -->
+
+    <div class='row' style='text-align: center;'>
+
+      <div class='col-xs-4'>
+        <h3>Ingredients</h3>
+        <div class='viewRecipeContainer'>
+          <p ng-repeat="item in ingredients">{{item}}
+          <p>
+        </div>
+      </div>
+
+      <div class='col-xs-8'>
+        <h3>Steps</h3>
+        <div class='viewRecipeContainer'>
+          <p ng-repeat="item in steps">{{item.description}}
+          <p>
+        </div>
+      </div>
+
+    </div>
+<!-- input comments -->
+    <h3 style='text-align: center;'>Comments</h3>
+      <div class='viewRecipeContainer'>
+      <table class="table">
+        <thead>
+            <tr>
+                <th class="col-xs-3">Username</th>
+                <th class="col-xs-3">Date</th>
+                <th class="col-xs-6">Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="comment in comments">
+            <td>
+              <span>{{comment.username}}</span></td>
+            <td>
+              <span>{{comment.date}}</span></td>
+            <td>
+              <span>{{comment.message}}</span></td>
+
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+  </div>
+</div>
+
+
+
+

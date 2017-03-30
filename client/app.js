@@ -3,6 +3,7 @@ angular.module('thymer', [
   'thymer.home',
   'thymer.newRecipe',
   'thymer.searchRecipes',
+  'thymer.viewRecipe',
   'ngRoute', 'angularUtils.directives.dirPagination'
 ])
 
@@ -30,6 +31,9 @@ angular.module('thymer', [
   .when('/searchRecipes', {
     templateUrl: 'partials/searchRecipes/searchRecipes.html',
     controller: 'searchRecipesController'
+  }).when('/viewRecipe', {
+    templateUrl: 'partials/viewRecipe/viewRecipe.html',
+    controller: 'viewRecipeController'
   })
   .otherwise({
     redirectTo: '/'
