@@ -34,8 +34,20 @@ app.listen(port, function() {
 });
 
 
-
 /*SERVER ROUTING*/
+
+// Get a specific recipe by the id parameter in the URL
+app.get('/api/recipe/:id', function(req, res, next) {
+  console.log('Server GET request for recipe id: ', req.params.id);
+  Recipe.findById(req.params.id, function(err, recipe) {
+    if (err) {
+      console.log('Error: ', err);
+    } else {
+      res.status(200).json(recipe);
+    }
+  });
+});
+
 app.post('/api/recipes', function(req, res, next) {
 
   console.log(req.body);

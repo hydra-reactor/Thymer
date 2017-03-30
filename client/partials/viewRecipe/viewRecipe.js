@@ -1,6 +1,7 @@
 angular.module('thymer.viewRecipe', [])
 
-.controller('viewRecipeController', function($scope, $location, Recipes) {
+.controller('viewRecipeController', function($scope, $location, $routeParams, Recipes) {
+  $scope.id = $routeParams.id;
   $scope.title = 'Baked Ziti';
   $scope.author = 'Chris Abrami';
   $scope.time = 195;

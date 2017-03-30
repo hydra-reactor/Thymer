@@ -27,7 +27,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 10px 10px 20px #888888
+  box-shadow: 10px 10px 20px #888888;
+  cursor: pointer;
 }
 
 .recipeTitle {
@@ -292,11 +293,3 @@ input:checked + .slider:before {
   border-radius: 5px;
   box-shadow: 10px 10px 20px #888888
 }
-
-
-
-
-
-
-
-

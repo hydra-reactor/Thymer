@@ -4,7 +4,8 @@ angular.module('thymer', [
   'thymer.newRecipe',
   'thymer.searchRecipes',
   'thymer.viewRecipe',
-  'ngRoute', 'angularUtils.directives.dirPagination'
+  'ngRoute',
+  'angularUtils.directives.dirPagination'
 ])
 
 // this first step is needed to redirect on page reloads within the cooking tab
@@ -12,32 +13,6 @@ angular.module('thymer', [
   console.dir($location);
   if ($location.$$path === '/cooking')
   $location.path('/searchRecipes');
-})
-
-.config(function($routeProvider) {
-  $routeProvider
-  .when('/', {
-    templateUrl: 'partials/home/home.html',
-    controller: 'homeController'
-  })
-  .when('/cooking', {
-    templateUrl: 'partials/cooking/cooking.html',
-    controller: 'cookingController'
-  })
-  .when('/newRecipe', {
-    templateUrl: 'partials/newRecipe/newRecipe.html',
-    controller: 'newRecipeController'
-  })
-  .when('/searchRecipes', {
-    templateUrl: 'partials/searchRecipes/searchRecipes.html',
-    controller: 'searchRecipesController'
-  }).when('/viewRecipe', {
-    templateUrl: 'partials/viewRecipe/viewRecipe.html',
-    controller: 'viewRecipeController'
-  })
-  .otherwise({
-    redirectTo: '/'
-  });
 })
 
 .factory('Recipes', function($http) {
@@ -64,9 +39,19 @@ angular.module('thymer', [
     });
   };
 
+  // get request to get a specific recipe by id
+  var getRecipe = function(id) {
+    return $http ({
+      method: 'GET',
+      url: '/api/recipe/' + id
+    }).then(function(res) {
+      return res.data;
+    });
+  };
+
   // sets the visibility for the cooking tab in navigation
-  var visible = function() {
-    if (currentRecipe) {
+  var visible = function(){
+    if(currentRecipe) {
       $('.cookingTab').css('visibility', 'visible');
     } else {
       $('.cookingTab').removeAttr('visibility').css('visibility', 'hidden');
