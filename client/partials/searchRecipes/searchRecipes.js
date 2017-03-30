@@ -8,6 +8,7 @@ angular.module('thymer.searchRecipes', [])
   Recipes.getRecipes()
   .then(function(data) {
     $scope.recipes = data;
+    console.log(data);
   });
 
   // updates current recipe and redirects to cooking page upon click
