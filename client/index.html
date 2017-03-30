@@ -23,19 +23,25 @@
     <!-- Angular ngRoute -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"> </script>
     <link rel="stylesheet" type="text/css" href="styles.css">
+
     <title>Thymer</title>
   </head>
   <body ng-app="thymer">
     <div ng-view></div>
-
+    <button class="button" ng-click="vm.authService.login()">Log In</button>
+    <a href='/login' class='button'>Logout</a>
     <!-- Angular Modules -->
     <script src="partials/cooking/cooking.js"></script>
     <script src="partials/home/home.js"></script>
     <script src="partials/newRecipe/newRecipe.js"></script>
     <script src="partials/searchRecipes/searchRecipes.js"></script>
     <!-- <script src="client/partials/auth/auth.js"></script> -->
+    <!-- Auth0 -->
+    <script type="text/javascript" src="https://cdn.auth0.com/js/lock/10.13/lock.min.js"></script>
+    <script src="node_modules/auth0-js/build/auth0.js"></script>
+    <script src="node_modules/angular-lock/dist/angular-lock.js"></script>
+    <script src="node_modules/angular-jwt/dist/angular-jwt.js"></script>
     <script src="/app.js"></script>
-
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 

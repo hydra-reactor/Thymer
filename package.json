@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/Asalem1/Thymer#readme",
   "dependencies": {
+    "angular-jwt": "^0.1.9",
+    "angular-lock": "^2.0.2",
+    "auth0-js": "^8.5.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "flipclock": "^0.7.8",
