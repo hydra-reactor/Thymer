@@ -3,7 +3,7 @@ angular.module('thymer', [
   'thymer.home',
   'thymer.newRecipe',
   'thymer.searchRecipes',
-  'ngRoute'
+  'ngRoute', 'angularUtils.directives.dirPagination'
 ])
 
 // this first step is needed to redirect on page reloads within the cooking tab
@@ -61,8 +61,8 @@ angular.module('thymer', [
   };
 
   // sets the visibility for the cooking tab in navigation
-  var visible = function(){
-    if(currentRecipe) {
+  var visible = function() {
+    if (currentRecipe) {
       $('.cookingTab').css('visibility', 'visible');
     } else {
       $('.cookingTab').removeAttr('visibility').css('visibility', 'hidden');
