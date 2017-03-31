@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/hydra-reactor/Thymer.png?label=ready&title=Ready)](https://waffle.io/hydra-reactor/Thymer)
 ## COLOR SCHEME
 
 #FFE372 - I Can't Believe its Not Nathan!
