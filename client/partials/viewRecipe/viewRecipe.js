@@ -3,6 +3,8 @@ angular.module('thymer.viewRecipe', [])
 .controller('viewRecipeController', function($scope, $location, $http, $routeParams, Recipes) {
   $scope.id = $routeParams.id;
 
+  // $scope.fbShareHref = 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flocalhost%3A3000%2F%23%2FviewRecipe%2F' + $scope.id + '&amp;src=sdkpreparse'
+
   $scope.timeCalculator = function(min) {
     var minRemain = min;
     var hourCounter = 0;
@@ -43,6 +45,12 @@ angular.module('thymer.viewRecipe', [])
       return res.data;
     });
   };
+
+  // updates current recipe and redirects to cooking page upon click
+  $scope.updateCurrentRecipe = function(recipe) {
+    Recipes.setCurrentRecipe(recipe);
+    $location.path('/cooking');
+  }
 
   $scope.getRecipeById($scope.id);
 });

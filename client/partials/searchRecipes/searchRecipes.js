@@ -12,8 +12,8 @@ angular.module('thymer.searchRecipes', [])
   });
 
   // updates current recipe and redirects to cooking page upon click
-  $scope.updateCurrentRecipe = function(recipe) {
+  $scope.updateCurrentRecipe = function(recipe, id) {
     Recipes.setCurrentRecipe(recipe);
-    $location.path('/cooking');
-    }
+    $location.path('/viewRecipe/' + id);
+  }
 });

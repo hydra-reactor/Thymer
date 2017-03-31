@@ -15,7 +15,7 @@ angular.module('thymer', [
   $location.path('/searchRecipes');
 })
 
-.factory('Recipes', function($http) {
+.factory('Recipes', function($http, $location) {
   //this is scaled to small DB, in the event of bigger DB we will need to fine-tune
   //the function to perform a filter on the backend rather then the front
 
@@ -74,12 +74,17 @@ angular.module('thymer', [
     currentRecipe = recipe;
   };
 
+  var go = function(path) {
+    $location.path(path);
+  }
+
   return {
     addRecipe: addRecipe,
     getRecipes: getRecipes,
     setCurrentRecipe: setCurrentRecipe,
     getCurrentRecipe: getCurrentRecipe,
     getRecipeById: getRecipeById,
+    go: go,
     visible: visible
   };
 });

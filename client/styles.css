@@ -59,12 +59,8 @@ p{
   font-weight: bold;
 }
 
-h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3{
   font-family: 'Lobster Two', cursive;
 }
 
@@ -171,7 +167,7 @@ label {
   border-radius: 15px;
 }
 
-.cooking-title{
+.cooking-title {
   margin-top: 15px;
   text-align: center;
   font-family: 'Lobster Two', cursive;
@@ -182,6 +178,11 @@ label {
   box-shadow: 10px 10px 28px -12px rgba(0,0,0,0.75);
   border-radius: 15px;
   background-color: #E9EBE3;
+  cursor: pointer;
+}
+
+.cooking-title:hover {
+  color: #874B78;
 }
 
 .list-group{
@@ -283,13 +284,4 @@ input:checked + .slider:before {
   width: auto;
   height: 725px;
   max-height: 725px;
-}
-
-/*-------------------------VIEWRECIPE-------------------------*/
-
-.viewRecipeContainer {
-  background-color: #95D2DC;
-  border: 10px solid #edf0f4;
-  border-radius: 5px;
-  box-shadow: 10px 10px 20px #888888
 }
