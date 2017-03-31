@@ -16,4 +16,14 @@ angular.module('thymer.searchRecipes', [])
     Recipes.setCurrentRecipe(recipe);
     $location.path('/viewRecipe/' + id);
   }
+// =======
+  // $scope.updateCurrentRecipe = function(recipe) {
+  //   Recipes.setCurrentRecipe(recipe);
+  //   $location.path('/cooking');
+  // }
+//   $scope.updateCurrentRecipe = function(recipe) {
+//     console.log(recipe);
+//     $location.path('/viewRecipe');
+//     }
+// >>>>>>> Add comments and tags
 });
