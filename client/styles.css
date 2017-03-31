@@ -20,15 +20,19 @@ body {
 
 /*-------------------------SEARCH RECIPES STYLING-------------------------*/
 .recipe {
-  border: 10px solid #edf0f4;
+  border: 7px solid #edf0f4;
   border-radius: 5px;
   margin: 10px;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 10px 10px 20px #888888;
+  box-shadow: 5px 5px 10px #888888;
   cursor: pointer;
+}
+
+.recipe:hover {
+  border-color: #E3BCC3;
 }
 
 .recipeTitle {
