@@ -208,6 +208,15 @@ label {
   background-color: #E9EBE3;
 }
 
+/*COMPLETED ITEMS*/
+
+.completed-list-group-item{
+  color': #E9EBE3,
+  font-size: 14px,
+  font-weight: normal,
+  background-color: #874B78
+}
+
 #recipe-image{
   width: 96%;
   margin-left: 20px;

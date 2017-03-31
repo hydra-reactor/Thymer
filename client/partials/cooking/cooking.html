@@ -45,7 +45,7 @@
       <div class="row-fluid">
         <h3>How to Cook {{recipe.title}}</h3>
           <ul class="list-group">
-              <li id="step{{$index}}" ng-repeat="step in cookSteps" class="list-group-item">
+              <li id="step{{$index}}" ng-repeat="step in cookSteps" class="list-group-item" ng-click="setStepIndex(step); stepsComplete(stepIndex)">
                 <small>{{step.totalMinutes}} min</small>
                 <p>{{step.description}}</p>
                 <video id="vid{{$index}}" controls autoplay name="media" class="vsc-initialized">
@@ -53,6 +53,8 @@
 
               </li>
           </ul>
+          {{recipe.steps[2]}}
+          {{stepIndex}}
       <div>
         <img id="recipe-image" src="{{recipe.image}}" />
       </div>

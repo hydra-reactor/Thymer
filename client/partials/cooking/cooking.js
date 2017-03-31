@@ -54,6 +54,57 @@ angular.module('thymer.cooking', [])
     $scope.cookSteps.push(step);
   });
 
+  //CREATE INDEX VALUE WHICH COMES FROM INDEX.HTML.  SET INDEX = 0;
+  $scope.stepIndex = 0;
+
+  $scope.setStepIndex = function(selectedStep) {
+    for (var i = 0; i < $scope.recipe.steps.length; i++) {
+      if (selectedStep['description'] === $scope.recipe.steps[i]['description']) {
+        $scope.stepIndex = i;
+      }
+    }
+  };
+
+  //CREATE STEPSREMAINING AND STEPSPASSED ARRAYS BY SPLICING COOKSTEPTIMES AND COOKSTEPS - THESE ARE WHAT SHOULD BE ENTERED IN AND THEY'LL BE INITIALIZED WITH COOK STEPS AND CHANGED WITH THE FUNCTION
+
+  // $scope.stepsRemaining = function(index) {
+  //   var remainingSteps = $scope.cookSteps.slice(index);
+  //   for (var i = 0; i < remainingSteps.length; i++) {
+  //     $('#step' + i).css({
+  //       //this is simply the formatting for the list-group-item class.  can be refactored later on
+  //       'color': 'black',
+  //       'font-size': '14px',
+  //       'font-family': 'Comfortaa, cursive',
+  //       'font-weight': 'bold',
+  //       'background-color': '#E9EBE3'
+  //     });
+  //   }
+  // };
+  $scope.stepsComplete = function(index) {
+    //first, splice out everything from 0 through stepIndex
+    //then, FOR EACH of those steps, apply the changes on those lines
+    //STILL NEEDS TO ONLY DO CHECKBOX ONCE
+
+    var completeSteps = $scope.cookSteps.slice(0, index);
+    for (var i = 0; i < completeSteps.length; i++) {
+      //completed steps
+    $('#step' + i).css({
+        'color': '#E9EBE3',
+        'font-size': '14px',
+        'font-weight': 'normal',
+        'background-color': '#874B78'
+      });
+        // adding in the check-mark glyphicon
+    $('#step' + i + ' small').append('<span class="glyphicon glyphicon-ok-circle"></span>');
+    $('.glyphicon').css({
+      'font-size': '25px',
+      'float': 'right',
+      'color': '#E9EBE3'
+    });
+    }
+  };
+
+
   // creates the total timer
   var totalClock = FlipClock($('.total-cook'), $scope.recipe.time * 60, {
     clockFace: 'HourlyCounter',
@@ -62,6 +113,7 @@ angular.module('thymer.cooking', [])
   });
 
   // var i set here to increment through cook-steps
+  //THIS WILL CHANGE TO STEPINDEX
   var i = 0;
 
   // sets the clock format based on step-duration
@@ -108,7 +160,7 @@ angular.module('thymer.cooking', [])
 
 
 //checks to see whether the step timer is done
-  setInterval(function(){
+  setInterval(function() {
     // if step timer is done, increment to the next step
     if (!stepClock.face.factory.running && cookingStarted) {
       i++;
