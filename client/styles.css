@@ -63,8 +63,12 @@ p{
   font-weight: bold;
 }
 
+h1,
 h2,
-h3{
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Lobster Two', cursive;
 }
 
@@ -288,4 +292,13 @@ input:checked + .slider:before {
   width: auto;
   height: 725px;
   max-height: 725px;
+}
+
+/*-------------------------VIEWRECIPE-------------------------*/
+
+.viewRecipeContainer {
+  background-color: #95D2DC;
+  border: 10px solid #edf0f4;
+  border-radius: 5px;
+  box-shadow: 10px 10px 20px #888888
 }
