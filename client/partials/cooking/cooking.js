@@ -4,6 +4,8 @@ angular.module('thymer.cooking', [])
    // toggles Cooking tab visibility in the nav bar
   Recipes.visible();
 
+  $scope.go = Recipes.go;
+
   // allows user to start and stop the timer by clicking on the clock
   // and by pressing the 'space' bar. Also styles slider based on these events
    $scope.toggleOnAndOff = function() {

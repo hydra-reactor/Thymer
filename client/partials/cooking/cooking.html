@@ -9,7 +9,7 @@
 <div class="container" keypress-events>
 
   <div class="row"> <!-- Recipe Title Row-->
-    <p class="cooking-title">{{recipe.title}}</p>
+    <p class="cooking-title" ng-click="go('/viewRecipe/' + recipe['_id'])">{{recipe.title}}</p>
   </div>
   <div class="row">
     <div class="col-xs-12 col-md-4"><!-- Left Main Content Columns-->
