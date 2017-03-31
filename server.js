@@ -51,7 +51,7 @@ app.get('/api/recipe/:id', function(req, res, next) {
 
 app.post('/api/recipes', function(req, res, next) {
 
-  console.log(req.body);
+  console.log('server.js - ',req.body);
 
   var recipe = new Recipe({
     time: req.body.time,
@@ -61,6 +61,8 @@ app.post('/api/recipes', function(req, res, next) {
     title: req.body.title,
     author: req.body.author,
     cuisine: req.body.cuisine,
+    tags: req.body.tags,
+    comments: req.body.comments,
     diet: req.body.diet,
     image: req.body.image,
     description: req.body.description

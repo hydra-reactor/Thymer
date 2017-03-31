@@ -33,7 +33,8 @@ angular.module('thymer', [
   // post request to add recipes
   var addRecipe = function(recipe) {
     recipe = angular.toJson(recipe);
-    return $http ({
+    // console.log('recipe', recipe);
+    return $http({
       method: 'POST',
       url: '/api/recipes',
       data: recipe
