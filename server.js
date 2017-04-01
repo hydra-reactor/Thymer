@@ -15,7 +15,11 @@ mongoose.connection.once('open', function() {
   console.log('Thyme after thyme on: ' + connection);
 });
 
-
+/*SET UP ROUTER FOR SOCIAL BOTS*/
+var nonSPArouter = express.Router();
+nonSPArouter.get('/', function(req,res) {
+  res.send('Serve regular HTML with metatags');
+});
 
 /*CONNECT TO SERVER*/
 var port = process.env.PORT || 3000;
@@ -23,10 +27,16 @@ var port = process.env.PORT || 3000;
 app.use(express.static(__dirname + '/client'));
 app.use(bodyParser.json());
 
-// app.get('/', function(req, res) {
-//   console.log('home!');
-//   res.sendfile(__dirname + '/client/index.html');
-// })
+// Middleware to check if the user-agent is a social sharing bot
+app.use(function(req, res, next) {
+  var ua = req.headers['user-agent'];
+  if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua)) {
+    console.log(ua,' is a bot');
+    nonSPArouter(req, res, next);
+  } else {
+    next();
+  }
+});
 
 app.listen(port, function() {
   console.log("we're live!");
@@ -59,8 +69,7 @@ app.get('/api/recipe/:id', function(req, res, next) {
 });
 
 app.post('/api/recipes', function(req, res, next) {
-
-  console.log('server.js - ',req.body);
+  console.log('POST request for a recipe: ', req.body);
 
   var recipe = new Recipe({
     time: req.body.time,
