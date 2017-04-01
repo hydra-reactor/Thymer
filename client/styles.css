@@ -208,6 +208,13 @@ label {
   background-color: #E9EBE3;
 }
 
+.glyphicon{
+  font-size: 25px;
+  float: right;
+  color: #E9EBE3;
+}
+
+
 /*COMPLETED ITEMS*/
 
 .completed-list-group-item{
