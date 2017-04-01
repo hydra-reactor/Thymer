@@ -11,8 +11,15 @@ angular.module('thymer', [
 // this first step is needed to redirect on page reloads within the cooking tab
 .run(function ($http, $location, $rootScope) {
   console.log('RUN run');
+
   if ($location.$$path === '/cooking')
   $location.path('/searchRecipes');
+  $rootScope.social = {
+    title: 'Thymer: The Most Fun You\'ve Ever Had Cooking',
+    description: 'Thymer is a fun and easy way to share your favorite recipes and cook recipes shared by others. Follow along with step-by-step instructions that are dictated as you cook.',
+    image: 'http://i.imgur.com/VKR8Yry.jpg',
+    url: 'https://hydrathymer.herokuapp.com'
+  }
 })
 
 .factory('Recipes', function($http, $location, $rootScope) {
@@ -116,7 +123,6 @@ angular.module('thymer', [
   var go = function(path) {
     $location.path(path);
   }
-
 
   return {
     addRecipe: addRecipe,

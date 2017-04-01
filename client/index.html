@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="thymer">
   <head>
-    <meta charset="utf-8">
+    <base href="/">
+
+    <!-- Tell social bots this site has dynamic JS content that needs to be crawled -->
+    <meta name="fragment" content="!">
+
+    <!-- Metadata for crawlers -->
+    <title>{{ social.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:url"                content="https://hydrathymer.herokuapp.com" />
+    <meta name="description"               content="{{ social.description }}" />
+    <meta property="og:url"                content="{{ social.url }}'" />
     <meta property="og:type"               content="article" />
-    <meta property="og:title"              content="Thymer: The Most Fun You've Ever Had Cooking" />
-    <meta property="og:description"        content="Thymer is a fun and easy way to share your favorite recipes and cook recipes shared by others. Follow along with step-by-step instructions that are dictated as you cook." />
-    <meta property="og:image"              content="http://i.imgur.com/VKR8Yry.jpg" />
+    <meta property="og:title"              content="{{ social.title }}" />
+    <meta property="og:description"        content="{{ social.description }}" />
+    <meta property="og:image"              content="{{ social.image }}" />
+    <meta name="twitter:title"             content="{{ social.title }}" />
+    <meta name="twitter:card"              content="{{ social.description }}" />
+    <meta name="twitter:description"       content="{{ social.description }}" />
+    <meta name="twitter:image:src"         content="{{ social.image }}" />
+
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Comfortaa" rel="stylesheet">
-
+    <meta charset="utf-8">
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -28,9 +40,8 @@
     <!-- Angular ngRoute -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"> </script>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Thymer</title>
   </head>
-  <body ng-app="thymer">
+  <body>
     <div ng-view></div>
 
     <!-- Angular Modules -->

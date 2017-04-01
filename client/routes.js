@@ -1,8 +1,7 @@
 angular.module('thymer')
 
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   console.log('Config run');
-var dimaconfig = 'Dima config'
   $routeProvider
   .when('/', {
     templateUrl: 'partials/home/home.html',
@@ -27,4 +26,7 @@ var dimaconfig = 'Dima config'
   .otherwise({
     redirectTo: '/'
   });
+
+  $locationProvider.html5Mode(true);
+  $locationProvider.hashPrefix('!');
 }]);

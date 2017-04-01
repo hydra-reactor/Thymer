@@ -3,40 +3,44 @@ var bodyParser = require('body-parser');
 var mongo = require('mongo');
 var mongoose = require('mongoose');
 var Recipe = require('./models');
+var prerender = require('prerender-node');
 var app = express();
 
 /*CONNECT TO DATABASE*/
 //make sure to uncomment which connection you're using
 
-// var connection = 'mongodb://thyme:thyme@ds133340.mlab.com:33340/orion-thyme';
-var connection = 'mongodb://localhost/thyme';
+var connection = 'mongodb://thyme:thyme@ds133340.mlab.com:33340/orion-thyme';
+// var connection = 'mongodb://localhost/thyme';
 mongoose.connect(connection);
 mongoose.connection.once('open', function() {
   console.log('Thyme after thyme on: ' + connection);
 });
 
 /*SET UP ROUTER FOR SOCIAL BOTS*/
-var nonSPArouter = express.Router();
-nonSPArouter.get('/', function(req,res) {
-  res.send('Serve regular HTML with metatags');
-});
+// var nonSPArouter = express.Router();
+// nonSPArouter.get('/', function(req,res) {
+//   res.send('Serve regular HTML with metatags');
+// });
 
-/*CONNECT TO SERVER*/
-var port = process.env.PORT || 3000;
+/*SET UP PRERENDER.IO TO SERVE STATIC HTML PAGES TO SOCIAL BOTS*/
+app.use(prerender.set('prerenderToken', 'Kmy3ntoe7ihSrepqaOKQ'));
 
 app.use(express.static(__dirname + '/client'));
 app.use(bodyParser.json());
 
 // Middleware to check if the user-agent is a social sharing bot
-app.use(function(req, res, next) {
-  var ua = req.headers['user-agent'];
-  if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua)) {
-    console.log(ua,' is a bot');
-    nonSPArouter(req, res, next);
-  } else {
-    next();
-  }
-});
+// app.use(function(req, res, next) {
+//   var ua = req.headers['user-agent'];
+//   if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua)) {
+//     console.log(ua,' is a bot');
+//     nonSPArouter(req, res, next);
+//   } else {
+//     next();
+//   }
+// });
+
+/*CONNECT TO SERVER*/
+var port = process.env.PORT || 8000;
 
 app.listen(port, function() {
   console.log("we're live!");
@@ -113,4 +117,9 @@ app.post('/api/update:id', function(req, res, next) {
       res.send(200, "Saved to DB");
     });
   });
+});
+
+// This route deals with HTML5Mode by forwarding missing files to index.html
+app.all('/*', function(req, res) {
+  res.sendfile('client/index.html');
 });

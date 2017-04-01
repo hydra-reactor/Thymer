@@ -21,6 +21,7 @@
     "express": "^4.15.2",
     "flipclock": "^0.7.8",
     "mongo": "^0.1.0",
-    "mongoose": "^4.9.0"
+    "mongoose": "^4.9.0",
+    "prerender-node": "^2.7.0"
   }
 }

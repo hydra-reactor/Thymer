@@ -43,7 +43,6 @@ angular.module('thymer.viewRecipe', [])
     });
   }
 
-
   $scope.submitComment = function () {
     var obj = {};
     obj.username = $scope.username;
@@ -79,4 +78,11 @@ angular.module('thymer.viewRecipe', [])
   }
 
   $scope.getRecipeById($scope.id);
+
+  // $rootScope.social = {
+  //   title: recipe.title,
+  //   description: recipe.description,
+  //   image: recipe.image,
+  //   url: 'https://hydrathymer.herokuapp.com/viewRecipe/' + $scope.id
+  // }
 });
