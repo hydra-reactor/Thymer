@@ -6,15 +6,17 @@ angular.module('thymer.cooking', [])
 
   // allows user to start and stop the timer by clicking on the clock
   // and by pressing the 'space' bar. Also styles slider based on these events
-   $scope.toggleOnAndOff = function() {
-    if($('#checkbox').is(':checked')) {
-      $scope.toggleCooking();
-      $('#checkbox').attr('checked', false);
-    } else {
-      $scope.toggleCooking();
-      $('#checkbox').attr('checked', true);
-    }
-  }
+  //  $scope.toggleOnAndOff = function() {
+  //   if($('#checkbox').is(':checked')) {
+  //     $scope.toggleCooking();
+  //     $('#checkbox').attr('checked', false);
+  //   } else {
+  //     $scope.toggleCooking();
+  //     $('#checkbox').attr('checked', true);
+  //   }
+  // }
+
+
 
   // toggle the start and stop function with 'space' key
   $(document).ready(function() {
@@ -24,19 +26,39 @@ angular.module('thymer.cooking', [])
       }
     });
     // stops the timer whenever user navigates to another tab
-    window.onhashchange = function () {
-        $scope.stopCooking();
-    };
-  });
+    // window.onhashchange = function () {
+    //     $scope.stopCooking();
+    //     for(var i = 0; i = $scope.cookSteps.length; i++) {
+    //       $('#vid' + i).get(0).pause();
+    //     }
+    //     $scope.stepIndex = 0;
 
+    //     //
+    // };
+  });
+  // var necessary to prevent clock autostart until initiated
+  var cookingStarted = false;
   // stops the cooking cycle when changing tabs
   // this is NECESSARY when leaving the cooking tab if the cooking process
   // has not been stopped
   $scope.stopCooking = function() {
     totalClock.stop();
     stepClock.stop();
-    cookingStarted = false;
-  }
+  };
+
+  $scope.startCooking = function() {
+    totalClock.start();
+    stepClock.start();
+  };
+
+  $scope.toggleOnAndOff = function() {
+    cookingStarted = !cookingStarted;
+    if (cookingStarted) {
+      $scope.startCooking();
+    } else {
+      $scope.stopCooking();
+    }
+  };
 
   // gets the clicked on recipe from searchRecipes
   $scope.recipe = Recipes.getCurrentRecipe();
@@ -58,7 +80,10 @@ angular.module('thymer.cooking', [])
   //   'background-color': '#FFE372'
   // };
 
-
+  // $scope.custom = true;
+  // $scope.toggleCustom = function() {
+  //   $scope.custom = $scope.custom === false ? true : false;
+  // };
 
 
 
@@ -96,7 +121,6 @@ angular.module('thymer.cooking', [])
       return;
     }
 
-
     $scope.stopCooking();
     var completeSteps = $scope.cookSteps.slice(0, index);
     var remainingSteps = $scope.cookSteps.slice(index);
@@ -114,12 +138,13 @@ angular.module('thymer.cooking', [])
         // if ($('#step' + i + 'small' + 'span' + '.glyphicon')) {
         //   continue;
         // } else {
-        $('#step' + i + ' small').addClass('hasCheck').append('<span class="glyphicon glyphicon-ok-circle"></span>');
-        $('.glyphicon').css({
-          'font-size': '25px',
-          'float': 'right',
-          'color': '#E9EBE3'
-        });
+        $('#step' + i + ' small')
+        // .append('<span class="glyphicon glyphicon-ok-circle"></span>');
+        // $('.glyphicon').css({
+        //   'font-size': '25px',
+        //   'float': 'right',
+        //   'color': '#E9EBE3'
+        // });
         // }
       }
       // console.log(remainingSteps);
@@ -136,17 +161,20 @@ angular.module('thymer.cooking', [])
       countdown: true,
       autoStart: false
     });
-    totalClock.start();
+    // totalClock.start();
     stepClock.setTime(remainingSteps[0].totalMinutes * 60);
         // cb function
           // $('#vid' + (i - 1)).removeAttr('autoplay');
-    stepClock.start(function() {
+    $scope.startCooking();
+    // stepClock.start(function() {
       // appending audio onto each step
     if (i >= 1) {
-      $('#vid' + (i - 1)).get(0).pause();
+      for (var k = 0; k < i; k++) {
+        $('#vid' + k).get(0).pause();
+      }
     }
     $('#vid' + i).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[i].description + '"' + ' type="audio/mpeg">');
-    });
+    // });
 
     $('#step' + index).css({
       'color': '#874B78',
@@ -191,7 +219,7 @@ angular.module('thymer.cooking', [])
 
 
 
-    // creates the total timer
+    // creates the total timer (sets it initially)
   var totalClock = FlipClock($('.total-cook'), $scope.timeRemaining * 60, {
     clockFace: 'HourlyCounter',
     countdown: true,
@@ -208,74 +236,73 @@ angular.module('thymer.cooking', [])
     clockFormat = 'HourlyCounter';
   }
 
-  //creates the local timer
+  //creates the local timer (sets it initially)
   var stepClock = new FlipClock($('.step-time'), $scope.cookStepTimes[i] * 60, {
     clockFace: clockFormat,
     countdown: true,
     autoStart: false
   });
 
-  // var necessary to prevent clock autostart until initiated
-  var cookingStarted = false;
+
 
   // initiates the cooking process
-  $scope.toggleCooking = function() {
-    if (!cookingStarted) {
-      totalClock.start();
-      stepClock.start(function() {
-        // styles the first step
-          $('#step' + i).css(activeStyle);
-        // appends audio onto first step at start
-          $('#vid' + i).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[i].description + '"' + ' type="audio/mpeg">')
-        });
-      cookingStarted = true;
-    } else {
-      totalClock.stop();
-      stepClock.stop();
-      cookingStarted = false;
-    }
-  }
+  // $scope.toggleCooking = function() {
+  //   if (!cookingStarted) {
+  //     totalClock.start();
+  //     stepClock.start(function() {
+  //       // styles the first step
+  //         $('#step' + i).css(activeStyle);
+  //       // appends audio onto first step at start
+  //         $('#vid' + i).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[i].description + '"' + ' type="audio/mpeg">')
+  //       });
+  //     cookingStarted = true;
+  //   } else {
+  //     totalClock.stop();
+  //     stepClock.stop();
+  //     cookingStarted = false;
+  //   }
+  // }
 
 
 //checks to see whether the step timer is done
 //THIS HAS TO BE WRAPPED INSIDE A FUNCTION THAT CAN BE INVOKED
 
   // $scope.goThroughSteps = function() {
-    setInterval(function() {
-      // if step timer is done, increment to the next step
-      if (!stepClock.face.factory.running && cookingStarted) {
-        i++;
-        var nextStepTime = $scope.cookStepTimes[i] * 60;
-        //stops the step timer once the incrementor is the array length
-        if (i >= $scope.cookStepTimes.length) {
-          stepClock.stop();
-        }
-        else {
-          // styles specific steps based on whether they are active or complete
-          $('#step' + i).css(activeStyle);
-          $('#step' + (i-1)).css({
-            'color': '#E9EBE3',
-            'font-size': '14px',
-            'font-weight': 'normal',
-            'background-color': '#874B78'
-          })
-          // adding in the check-mark glyphicon
-          $('#step' + (i-1) + ' small').append('<span class="glyphicon glyphicon-ok-circle"></span>');
-          $('.glyphicon').css({
-            'font-size': '25px',
-            'float': 'right',
-            'color': '#E9EBE3'
-          });
-          // initiating the next step countdown
-          stepClock.setTime(nextStepTime);
-          // cb function
-          stepClock.start(function() {
-            // appending audio onto each step
-            $('#vid' + i).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[i].description + '"' + ' type="audio/mpeg">')
-          });
-        }
-      };
-    }, 1000);
+    // setInterval(function() {
+    //   // if step timer is done, increment to the next step
+    //   if (!stepClock.face.factory.running && cookingStarted) {
+    //     i++;
+    //     var nextStepTime = $scope.cookStepTimes[i] * 60;
+    //     //stops the step timer once the incrementor is the array length
+    //     if (i >= $scope.cookStepTimes.length) {
+    //       stepClock.stop();
+    //     }
+    //     else {
+    //       // styles specific steps based on whether they are active or complete
+    //       $('#step' + i).css(activeStyle);
+    //       $('#step' + (i-1)).css({
+    //         'color': '#E9EBE3',
+    //         'font-size': '14px',
+    //         'font-weight': 'normal',
+    //         'background-color': '#874B78'
+    //       })
+    //       // adding in the check-mark glyphicon
+    //       $('#step' + (i-1) + ' small').append('<span class="glyphicon glyphicon-ok-circle"></span>');
+    //       $('.glyphicon').css({
+    //         'font-size': '25px',
+    //         'float': 'right',
+    //         'color': '#E9EBE3'
+    //       });
+    //       // initiating the next step countdown
+    //       stepClock.setTime(nextStepTime);
+    //       // cb function
+    //       stepClock.start(function() {
+    //         // appending audio onto each step
+    //         $('#vid' + i).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[i].description + '"' + ' type="audio/mpeg">')
+    //       });
+    //     }
+    //   };
+    // }, 1000);
   // };
   // $scope.goThroughSteps();
 
