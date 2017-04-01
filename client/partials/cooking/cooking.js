@@ -1,7 +1,9 @@
 angular.module('thymer.cooking', [])
 
-.controller('cookingController', function($scope, Recipes, $location) {
-   // toggles Cooking tab visibility in the nav bar
+.controller('cookingController', function($scope, Recipes, $location, $rootScope) {
+  $rootScope.social.title = 'Cooking';
+
+  // toggles Cooking tab visibility in the nav bar
   Recipes.visible();
 
   $scope.go = Recipes.go;

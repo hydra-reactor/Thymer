@@ -1,6 +1,9 @@
 angular.module('thymer.searchRecipes', [])
 
 .controller('searchRecipesController', function($scope, $location, Recipes, $rootScope) {
+  $rootScope.social.title = 'All Recipes';
+  $rootScope.social.description = 'Search for new recipes by name, description, or tags.';
+
   // toggles Cooking tab visibility in the nav bar
   Recipes.visible();
 

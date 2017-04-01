@@ -1,6 +1,8 @@
 angular.module('thymer.newRecipe', [])
 
-.controller('newRecipeController', function($scope, Recipes, $location) {
+.controller('newRecipeController', function($scope, Recipes, $location, $rootScope) {
+  $rootScope.social.title = 'New Recipe';
+  $rootScope.social.description = 'Add a new recipe.';
 
   Recipes.visible();
 
