@@ -92,38 +92,44 @@ angular.module('thymer.cooking', [])
     //first, splice out everything from 0 through stepIndex
     //then, FOR EACH of those steps, apply the changes on those lines
     //STILL NEEDS TO ONLY DO CHECKBOX ONCE
+    if (index === $scope.recipe.steps.length) {
+      return;
+    }
+
+
     $scope.stopCooking();
     var completeSteps = $scope.cookSteps.slice(0, index);
     var remainingSteps = $scope.cookSteps.slice(index);
 
-    for (var i = 0; i < completeSteps.length; i++) {
-      //completed steps
-    $('#step' + i).css({
-        'color': '#E9EBE3',
-        'font-size': '14px',
-        'font-weight': 'normal',
-        'background-color': '#874B78'
-      });
-    // $('#step' + i).removeChild('span');
-        // adding in the check-mark glyphicon
-      // if ($('#step' + i + 'small' + 'span' + '.glyphicon')) {
-      //   continue;
-      // } else {
+      for (var i = 0; i < completeSteps.length; i++) {
+        //completed steps
+        $('#step' + i).css({
+            'color': '#E9EBE3',
+            'font-size': '14px',
+            'font-weight': 'normal',
+            'background-color': '#874B78'
+          });
+      // $('#step' + i).removeChild('span');
+          // adding in the check-mark glyphicon
+        // if ($('#step' + i + 'small' + 'span' + '.glyphicon')) {
+        //   continue;
+        // } else {
         $('#step' + i + ' small').addClass('hasCheck').append('<span class="glyphicon glyphicon-ok-circle"></span>');
         $('.glyphicon').css({
           'font-size': '25px',
           'float': 'right',
           'color': '#E9EBE3'
         });
-      // }
-    }
-    // console.log(remainingSteps);
+        // }
+      }
+      // console.log(remainingSteps);
+
 
     var minRemain = 0;
     for (var j = 0; j < remainingSteps.length; j++) {
       minRemain += remainingSteps[j].totalMinutes;
-
     }
+
     $scope.timeRemaining = minRemain;
     totalClock = FlipClock($('.total-cook'), $scope.timeRemaining * 60, {
       clockFace: 'HourlyCounter',
@@ -134,22 +140,36 @@ angular.module('thymer.cooking', [])
     stepClock.setTime(remainingSteps[0].totalMinutes * 60);
         // cb function
           // $('#vid' + (i - 1)).removeAttr('autoplay');
-        stepClock.start(function() {
-          // appending audio onto each step
-          if(i >= 1) {
-            $('#vid' + (i - 1)).get(0).pause();
-          }
-          $('#vid' + i).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[i].description + '"' + ' type="audio/mpeg">');
-        });
+    stepClock.start(function() {
+      // appending audio onto each step
+    if (i >= 1) {
+      $('#vid' + (i - 1)).get(0).pause();
+    }
+    $('#vid' + i).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[i].description + '"' + ' type="audio/mpeg">');
+    });
 
-      $('#step' + index).css({
-        'color': '#874B78',
-        'font-size': '25px',
-        'font-weight': 'bold',
-        'background-color': '#FFE372'
-      });
+    $('#step' + index).css({
+      'color': '#874B78',
+      'font-size': '25px',
+      'font-weight': 'bold',
+      'background-color': '#FFE372'
+    });
 
-  };
+  setInterval(function() {
+    if (!stepClock.face.factory.running) {
+      $scope.stepsExecute(index + 1);
+    // } else if ($scope.stepIndex !== index) {
+    //   clearInterval();
+    //   $scope.stepsExecute(index);
+    }
+  }, 1000);
+};
+
+
+
+
+
+
 
 
 
