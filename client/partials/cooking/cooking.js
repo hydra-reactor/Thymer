@@ -54,6 +54,29 @@ angular.module('thymer.cooking', [])
     $scope.cookSteps.push(step);
   });
 
+// creating a style for active ingredients
+  // var activeStyle = {
+  //   'color': '#874B78',
+  //   'font-size': '25px',
+  //   'font-weight': 'bold',
+  //   'background-color': '#FFE372'
+  // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //CREATE INDEX VALUE WHICH COMES FROM INDEX.HTML.  SET INDEX = 0;
   $scope.stepIndex = 0;
 
@@ -65,30 +88,18 @@ angular.module('thymer.cooking', [])
     }
   };
 
-
   //CREATE STEPSREMAINING AND STEPSPASSED ARRAYS BY SPLICING COOKSTEPTIMES AND COOKSTEPS - THESE ARE WHAT SHOULD BE ENTERED IN AND THEY'LL BE INITIALIZED WITH COOK STEPS AND CHANGED WITH THE FUNCTION
 
-  // $scope.stepsRemaining = function(index) {
-  //   var remainingSteps = $scope.cookSteps.slice(index);
-  //   for (var i = 0; i < remainingSteps.length; i++) {
-  //     $('#step' + i).css({
-  //       //this is simply the formatting for the list-group-item class.  can be refactored later on
-  //       'color': 'black',
-  //       'font-size': '14px',
-  //       'font-family': 'Comfortaa, cursive',
-  //       'font-weight': 'bold',
-  //       'background-color': '#E9EBE3'
-  //     });
-  //   }
-  // };
   $scope.timeRemaining = $scope.recipe.time;
-  $scope.stepsComplete = function(index) {
+
+  $scope.stepsExecute = function(index) {
     //first, splice out everything from 0 through stepIndex
     //then, FOR EACH of those steps, apply the changes on those lines
     //STILL NEEDS TO ONLY DO CHECKBOX ONCE
     $scope.stopCooking();
     var completeSteps = $scope.cookSteps.slice(0, index);
     var remainingSteps = $scope.cookSteps.slice(index);
+
     for (var i = 0; i < completeSteps.length; i++) {
       //completed steps
     $('#step' + i).css({
@@ -99,14 +110,19 @@ angular.module('thymer.cooking', [])
       });
     // $('#step' + i).removeChild('span');
         // adding in the check-mark glyphicon
-    $('#step' + i + ' small').append('<span class="glyphicon glyphicon-ok-circle"></span>');
-    $('.glyphicon').css({
-      'font-size': '25px',
-      'float': 'right',
-      'color': '#E9EBE3'
-    });
+      // if ($('#step' + i + 'small' + 'span' + '.glyphicon')) {
+      //   continue;
+      // } else {
+        $('#step' + i + ' small').addClass('hasCheck').append('<span class="glyphicon glyphicon-ok-circle"></span>');
+        $('.glyphicon').css({
+          'font-size': '25px',
+          'float': 'right',
+          'color': '#E9EBE3'
+        });
+      // }
     }
-    console.log(remainingSteps);
+    // console.log(remainingSteps);
+
     var minRemain = 0;
     for (var j = 0; j < remainingSteps.length; j++) {
       minRemain += remainingSteps[j].totalMinutes;
@@ -119,18 +135,45 @@ angular.module('thymer.cooking', [])
       autoStart: false
     });
     totalClock.start();
-
-    console.log(remainingSteps[0].totalMinutes);
     stepClock.setTime(remainingSteps[0].totalMinutes * 60);
         // cb function
           // $('#vid' + (i - 1)).removeAttr('autoplay');
         stepClock.start(function() {
           // appending audio onto each step
-          $('#vid' + (i - 1)).get(0).pause();
+          if(i >= 1) {
+            $('#vid' + (i - 1)).get(0).pause();
+          }
           $('#vid' + i).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[i].description + '"' + ' type="audio/mpeg">');
         });
 
+      $('#step' + index).css({
+        'color': '#874B78',
+        'font-size': '25px',
+        'font-weight': 'bold',
+        'background-color': '#FFE372'
+      });
+
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // creates the total timer
   var totalClock = FlipClock($('.total-cook'), $scope.timeRemaining * 60, {
@@ -158,14 +201,6 @@ angular.module('thymer.cooking', [])
 
   // var necessary to prevent clock autostart until initiated
   var cookingStarted = false;
-
-  // creating a style for active ingredients
-  var activeStyle = {
-    'color': '#874B78',
-    'font-size': '25px',
-    'font-weight': 'bold',
-    'background-color': '#FFE372'
-  }
 
   // initiates the cooking process
   $scope.toggleCooking = function() {
