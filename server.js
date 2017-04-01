@@ -35,6 +35,15 @@ app.listen(port, function() {
 
 
 /*SERVER ROUTING*/
+app.get('/api/recipes', function(req, res, next) {
+  Recipe.find(function(err, data) {
+    if (err) {
+      throw err;
+    }
+    res.status(200).send(data);
+    next();
+  });
+});
 
 // Get a specific recipe by the id parameter in the URL
 app.get('/api/recipe/:id', function(req, res, next) {
@@ -77,12 +86,22 @@ app.post('/api/recipes', function(req, res, next) {
   });
 });
 
-app.get('/api/recipes', function(req, res, next) {
-  Recipe.find(function(err, data) {
+app.post('/api/update:id', function(req, res, next) {
+  console.log('Server POST request to update: ', req.params.id);
+  console.log('req', req.body);
+
+  Recipe.findById(req.params.id, function(err, recipe) {
     if (err) {
-      throw err;
+      return console.log('Error: ', err);
     }
-    res.status(200).send(data);
-    next();
+    recipe.comments.push(req.body);
+
+    console.log('recipe: ', recipe);
+    recipe.save(function(err) {
+      if (err) {
+        throw err;
+      }
+      res.send(200, "Saved to DB");
+    });
   });
 });

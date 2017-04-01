@@ -1,6 +1,8 @@
 angular.module('thymer')
 
 .config(['$routeProvider', function($routeProvider) {
+  console.log('Config run');
+var dimaconfig = 'Dima config'
   $routeProvider
   .when('/', {
     templateUrl: 'partials/home/home.html',

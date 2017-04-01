@@ -33,6 +33,11 @@
         <p>Cook Time: {{timeDisplay}}</p>
         <p>Serves: {{recipe.servings}}</p>
         <p>Cuisine: {{recipe.cuisine}}</p>
+        <p>
+          Tags:<span ng-repeat="tag in recipe.tags">
+             {{'"' + tag + '"'}}
+          </span>
+        </p>
 
         <div style="text-align: center;">
           <button ng-click="updateCurrentRecipe(recipe)" style="border-radius:5px;" class="bg-primary submit-recipe"> Start Cooking!</button>
@@ -92,13 +97,13 @@
             </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="comment in comments">
+          <tr ng-repeat="comment in recipe.comments">
             <td>
               <span>{{comment.username}}</span></td>
             <td>
               <span>{{comment.date}}</span></td>
             <td>
-              <span>{{comment.message}}</span></td>
+              <span>{{comment.text}}</span></td>
 
           </tr>
         </tbody>
@@ -110,7 +115,14 @@
     <div class="col-xs-12">
       <h3>Add Comment</h3>
       <div>
-        <input type="text" class="form-control" ng-model="comment" placeholder="enter comment"/>
+        <input type="text" class="form-control" ng-model="username" placeholder="your name"/>
+      </div>
+      <div>
+        <input type="text" class="form-control" ng-model="text" placeholder="enter comment"/>
+      </div>
+      <br/>
+      <div style="text-align: center;">
+        <button ng-click="submitComment()" style="border-radius:5px;" class="bg-primary submit-recipe"> Add Comment</button>
       </div>
     </div>
   </div>
