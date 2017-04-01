@@ -1,14 +1,12 @@
 angular.module('thymer.searchRecipes', [])
 
-.controller('searchRecipesController', function($scope, $location, Recipes) {
+.controller('searchRecipesController', function($scope, $location, Recipes, $rootScope) {
   // toggles Cooking tab visibility in the nav bar
   Recipes.visible();
 
-  // Get request made to get info
   Recipes.getRecipes()
   .then(function(data) {
     $scope.recipes = data;
-    console.log(data);
   });
 
   // updates current recipe and redirects to cooking page upon click
@@ -16,14 +14,4 @@ angular.module('thymer.searchRecipes', [])
     Recipes.setCurrentRecipe(recipe);
     $location.path('/viewRecipe/' + id);
   }
-// =======
-  // $scope.updateCurrentRecipe = function(recipe) {
-  //   Recipes.setCurrentRecipe(recipe);
-  //   $location.path('/cooking');
-  // }
-//   $scope.updateCurrentRecipe = function(recipe) {
-//     console.log(recipe);
-//     $location.path('/viewRecipe');
-//     }
-// >>>>>>> Add comments and tags
 });

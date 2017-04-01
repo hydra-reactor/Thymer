@@ -1,6 +1,6 @@
 angular.module('thymer.viewRecipe', [])
 
-.controller('viewRecipeController', function($scope, $location, $http, $routeParams, Recipes) {
+.controller('viewRecipeController', function($scope, $rootScope, $location, $http, $routeParams, Recipes) {
   $scope.id = $routeParams.id;
 
   // $scope.fbShareHref = 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flocalhost%3A3000%2F%23%2FviewRecipe%2F' + $scope.id + '&amp;src=sdkpreparse'
@@ -31,7 +31,33 @@ angular.module('thymer.viewRecipe', [])
     }
   };
 
-  $scope.comments = [{username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'}, {username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'},{username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'},{username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'}];
+ // $scope.comments = [{username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'}, {username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'},{username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'},{username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'},{username: 'abramicf', message: 'This is the best dish I have ever had.  Like, ever.  Totally recommended.', date: '12/10/2016'}, {username: 'umaabrami', message: 'Not so sure about this one.  Felt a bit queasy afterwards, but maybe its just me', date: '10/10/2016'}];
+
+  if ($rootScope.factoryData) {
+    $scope.recipes = $rootScope.factoryData;
+  } else {
+    Recipes.getRecipes()
+    .then(function(data) {
+      $scope.recipes = data;
+      console.log('$scope.recipes', $scope.recipes);
+    });
+  }
+
+
+  $scope.submitComment = function () {
+    var obj = {};
+    obj.username = $scope.username;
+    obj.text = $scope.text;
+
+    var arr = $scope.recipes.filter(el => el._id === $scope.id)
+    // console.log('arr', arr);
+
+    // update comments in the browser
+    $scope.recipe.comments.push(obj);
+
+    // post update to the server
+    Recipes.updateRecipe(obj, $scope.id);
+  };
 
   // get request to get a specific recipe by id
   $scope.getRecipeById = function(id) {

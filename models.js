@@ -13,7 +13,7 @@ var recipeSchema = new mongoose.Schema({
     comments: [{
       date: Date,
       username: String,
-      message: String
+      text: String
     }],
     image: String,
     description: String

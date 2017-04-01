@@ -149,7 +149,7 @@ angular.module('thymer.newRecipe', [])
   //////Submit Recipe to DB//////////
   $scope.submitRecipe = function() {
 
-    //if fany fields are not complete, do not submit
+    //if any fields are not complete, do not submit
     $scope.incompleteFields = [];
 
     if (!$scope.servings) {
@@ -174,7 +174,7 @@ angular.module('thymer.newRecipe', [])
       $scope.incompleteFields.push('description');
     }
 
-    // if ($scope.incompleteFields.length) {
+    // if ($scope.incompleteFields.length) {  // switched off checks for empty fields
     if (false) {
       //show modal
       $('#incompleteFieldsModal').modal('show');
@@ -214,7 +214,6 @@ angular.module('thymer.newRecipe', [])
         cuisine: $scope.cuisine, //done
         diet: diet, //done
         tags: tags,
-        // comments: comments,
         image: $scope.image, //done
         description: $scope.description //done
       };
