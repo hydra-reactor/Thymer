@@ -3,13 +3,14 @@ var bodyParser = require('body-parser');
 var mongo = require('mongo');
 var mongoose = require('mongoose');
 var Recipe = require('./models');
+var path = require('path');
 var app = express();
 
 /*CONNECT TO DATABASE*/
 //make sure to uncomment which connection you're using
 
-// var connection = 'mongodb://thyme:thyme@ds133340.mlab.com:33340/orion-thyme';
-var connection = 'mongodb://localhost/thyme';
+var connection = 'mongodb://thyme:thyme@ds133340.mlab.com:33340/orion-thyme';
+// var connection = 'mongodb://localhost/thyme';
 mongoose.connect(connection);
 mongoose.connection.once('open', function() {
   console.log('Thyme after thyme on: ' + connection);
@@ -20,7 +21,9 @@ mongoose.connection.once('open', function() {
 /*CONNECT TO SERVER*/
 var port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + '/client'));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+app.use(express.static(__dirname + '/client')); // We should be able to remove this. -m
 app.use(bodyParser.json());
 
 // app.get('/', function(req, res) {
