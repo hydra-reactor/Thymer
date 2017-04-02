@@ -41,7 +41,7 @@ app.listen(port, function() {
 });
 
 /*NONSPA ROUTING*/
-nonSPArouter.get('/api/recipe/:id', function(req, res, next) {
+nonSPArouter.get('/viewRecipe/:id', function(req, res, next) {
   var metaTags = {
     metaTagsImg: 'http://i.imgur.com/VKR8Yry.jpg',
     metaTagsTitle: 'Test',
