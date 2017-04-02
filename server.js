@@ -45,6 +45,7 @@ app.listen(port, function() {
 nonSPArouter.get('/viewRecipe/:id', function(req, res, next) {
   console.log('nonSPArouter GET request');
   var metaTags = {
+    metaTagsUrl: 'http://hydrathymer.herokuapp.com/',
     metaTagsImg: 'http://i.imgur.com/VKR8Yry.jpg',
     metaTagsTitle: 'Test',
     metaTagsType: 'website',
@@ -57,6 +58,7 @@ nonSPArouter.get('/viewRecipe/:id', function(req, res, next) {
     if (err) {
       console.log('Error: ', err);
     } else {
+      metaTags.metaTagsUrl = metaTags.metaTagsUrl + 'viewRecipe/' + req.params.id; // direct link to viewrecipe page
 			metaTags.metaTagsImg = recipe.image != "" ? recipe.image:metaTags.metaTagsImg; // article image
 			metaTags.metaTagsTitle = recipe.title; // title
       metaTags.metaTagsDescription = recipe.description; // description
