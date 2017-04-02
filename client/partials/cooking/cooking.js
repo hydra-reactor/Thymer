@@ -30,15 +30,15 @@ angular.module('thymer.cooking', [])
       }
     });
     // stops the timer whenever user navigates to another tab
-    // window.onhashchange = function () {
-    //     $scope.stopCooking();
-    //     for(var i = 0; i = $scope.cookSteps.length; i++) {
-    //       $('#vid' + i).get(0).pause();
-    //     }
-    //     $scope.stepIndex = 0;
+    window.onhashchange = function () {
+        $scope.stopCooking();
+        for(var i = 0; i = $scope.cookSteps.length; i++) {
+          $('#vid' + i).get(0).pause();
+        }
+        $scope.stepIndex = 0;
 
-    //     //
-    // };
+        //
+    };
   });
   // var necessary to prevent clock autostart until initiated
   var cookingStarted = false;
@@ -128,38 +128,35 @@ angular.module('thymer.cooking', [])
     $scope.stopCooking();
     var completeSteps = $scope.cookSteps.slice(0, index);
     var remainingSteps = $scope.cookSteps.slice(index);
+    console.log(completeSteps);
+    console.log(remainingSteps);
 
       for (var i = 0; i < completeSteps.length; i++) {
         //completed steps
-        $('#step' + i).css({
-            'color': '#E9EBE3',
-            'font-size': '14px',
-            'font-weight': 'normal',
-            'background-color': '#874B78'
-          });
-      // $('#step' + i).removeChild('span');
-          // adding in the check-mark glyphicon
-        // if ($('#step' + i + 'small' + 'span' + '.glyphicon')) {
-        //   continue;
-        // } else {
-        $('#step' + i + ' small')
-        // .append('<span class="glyphicon glyphicon-ok-circle"></span>');
-        // $('.glyphicon').css({
-        //   'font-size': '25px',
-        //   'float': 'right',
-        //   'color': '#E9EBE3'
-        // });
-        // }
+        // var oldStep = $('#step' + i);
+        // console.log(oldStep.html());
+        $('#step' + i).addClass('completed-list-group-item');
+        // console.log($('#step' + i));
+        $('#vid' + i).get(0).pause();
       }
       // console.log(remainingSteps);
 
-
-    var minRemain = 0;
-    for (var j = 0; j < remainingSteps.length; j++) {
-      minRemain += remainingSteps[j].totalMinutes;
+    for (var j = index; j < remainingSteps.length; j++) {
+      var thisStep = $('#step' + j);
+      if (thisStep.hasClass('active-list-group-item')) {
+        thisStep.removeClass('active-list-group-item');
+      }
+      if (thisStep.hasClass('completed-list-group-item')) {
+        thisStep.removeClass('completed-list-group-item');
+      }
     }
 
+    var minRemain = 0;
+    for (var k = 0; k < remainingSteps.length; k++) {
+      minRemain += remainingSteps[k].totalMinutes;
+    };
     $scope.timeRemaining = minRemain;
+    console.log(minRemain);
     totalClock = FlipClock($('.total-cook'), $scope.timeRemaining * 60, {
       clockFace: 'HourlyCounter',
       countdown: true,
@@ -170,22 +167,18 @@ angular.module('thymer.cooking', [])
         // cb function
           // $('#vid' + (i - 1)).removeAttr('autoplay');
     $scope.startCooking();
-    // stepClock.start(function() {
-      // appending audio onto each step
-    if (i >= 1) {
-      for (var k = 0; k < i; k++) {
-        $('#vid' + k).get(0).pause();
-      }
-    }
-    $('#vid' + i).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[i].description + '"' + ' type="audio/mpeg">');
-    // });
 
-    $('#step' + index).css({
-      'color': '#874B78',
-      'font-size': '25px',
-      'font-weight': 'bold',
-      'background-color': '#FFE372'
-    });
+      // appending audio onto each step
+    // if (i >= 1) {
+    //   for (var k = 0; k < i; k++) {
+    //     $('#vid' + k).get(0).pause();
+    //   }
+    // }
+    $('#vid' + index).append('<source src="http://api.voicerss.org/?key=c005359f68ec4ab89c485808abf9c53c&hl=en-gb&src=' + $scope.cookSteps[index].description + '"' + ' type="audio/mpeg">');
+
+    $('#step' + index).addClass('active-list-group-item');
+
+    //go through everything else
 
   setInterval(function() {
     if (!stepClock.face.factory.running) {

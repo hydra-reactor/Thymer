@@ -208,6 +208,20 @@ label {
   background-color: #E9EBE3;
 }
 
+.active-list-group-item{
+  color: #874B78;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #FFE372;
+}
+
+.completed-list-group-item{
+  color: #E9EBE3;
+  font-size: 14px;
+  font-weight: normal;
+  background-color: #874B78;
+}
+
 .glyphicon{
   font-size: 25px;
   float: right;
@@ -217,12 +231,6 @@ label {
 
 /*COMPLETED ITEMS*/
 
-.completed-list-group-item{
-  color': #E9EBE3,
-  font-size: 14px,
-  font-weight: normal,
-  background-color: #874B78
-}
 
 #recipe-image{
   width: 96%;
