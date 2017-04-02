@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require('path');
 var mongo = require('mongo');
 var mongoose = require('mongoose');
 var Recipe = require('./models');
@@ -42,6 +43,7 @@ app.listen(port, function() {
 
 /*NONSPA ROUTING*/
 nonSPArouter.get('/viewRecipe/:id', function(req, res, next) {
+  console.log('nonSPArouter GET request');
   var metaTags = {
     metaTagsImg: 'http://i.imgur.com/VKR8Yry.jpg',
     metaTagsTitle: 'Test',
@@ -59,9 +61,9 @@ nonSPArouter.get('/viewRecipe/:id', function(req, res, next) {
 			metaTags.metaTagsTitle = recipe.title; // title
       metaTags.metaTagsDescription = recipe.description; // description
 			metaTags.metaTagsType = 'article'; // type of meta tags
-			metaTags.metaTagsKeyWords = metaTags.metaTagsKeyWords + ',' + article.title; // add keywords
+			metaTags.metaTagsKeyWords = metaTags.metaTagsKeyWords + ',' + recipe.title; // add keywords
 
-			res.render(path.join(__dirname, '/view/index.ejs'), metaTags); // render index.ejs with meta tags
+			res.render(path.join(__dirname, './view/index.ejs'), metaTags); // render index.ejs with meta tags
     }
   });
 
