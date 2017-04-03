@@ -126,7 +126,6 @@ angular.module('thymer.cooking', [])
   if ($scope.cookStepTimes[i] > 60) {
     clockFormat = 'HourlyCounter';
   }
-
   //creates the local timer (sets it initially)
   var stepClock = new FlipClock($('.step-time'), $scope.cookStepTimes[i] * 60, {
     clockFace: clockFormat,
