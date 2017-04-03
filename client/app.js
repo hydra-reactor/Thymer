@@ -63,17 +63,31 @@ angular.module('thymer', [
   // };
 
   // post request to update recipes
-  var updateRecipe = function(recipe, id) {
+  var updateRecipe = function(recipe, endpoint) {
+    // var url = endpoint;
+    console.log('endpoint', endpoint);
     console.log('app.js0 - recipe', recipe);
     recipe = angular.toJson(recipe);
-    console.log('app.js1 - recipe', recipe);
 
     return $http({
       method: 'POST',
-      url: '/api/update' + id,
+      url: endpoint,
+      // url: '/api/update/' + id,
       data: recipe
     });
   };
+
+  // var updateRating = function(recipe, id, endpoint) {
+  //   var url = '/api/updaterating' + id
+  //   console.log('app.js0 - recipe', recipe);
+  //   recipe = angular.toJson(recipe);
+  //
+  //   return $http({
+  //     method: 'POST',
+  //     url: endpoint,
+  //     data: recipe
+  //   });
+  // };
 
   // post request to add recipes
   var addRecipe = function(recipe) {
@@ -86,7 +100,7 @@ angular.module('thymer', [
     });
   };
 
-  // get request to get a specific recipe by id
+  // GET request to get a specific recipe by id
   var getRecipeById = function(id) {
     return $http ({
       method: 'GET',

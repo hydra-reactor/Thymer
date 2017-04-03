@@ -15,6 +15,7 @@ var recipeSchema = new mongoose.Schema({
       username: String,
       text: String
     }],
+    rating: Number,
     image: String,
     description: String
 });

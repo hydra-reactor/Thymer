@@ -111,6 +111,7 @@ app.post('/api/recipes', function(req, res, next) {
     cuisine: req.body.cuisine,
     tags: req.body.tags,
     comments: req.body.comments,
+    rating: req.body.rating,
     diet: req.body.diet,
     image: req.body.image,
     description: req.body.description
@@ -126,16 +127,35 @@ app.post('/api/recipes', function(req, res, next) {
   });
 });
 
-app.post('/api/update:id', function(req, res, next) {
+
+app.post('/api/update/:id', function(req, res, next) {
   console.log('Server POST request to update: ', req.params.id);
   console.log('req', req.body);
 
   Recipe.findById(req.params.id, function(err, recipe) {
     if (err) {
       return console.log('Error: ', err);
-    } else {
-      recipe.comments.push(req.body);
+    }
+    recipe.comments.push(req.body);
+    console.log('recipe: ', recipe);
+    recipe.save(function(err) {
+      if (err) {
+        throw err;
+      }
+      res.send(200, "Saved to DB");
+    });
+  });
+});
 
+app.post('/api/updaterating/:id', function(req, res, next) {
+  console.log('Server POST request to update: ', req.params.id);
+  console.log('req', req.body);
+
+  Recipe.findById(req.params.id, function(err, recipe) {
+    if (err) {
+      return console.log('Error: ', err);
+    }
+      recipe.rating = req.body.rating;
       console.log('recipe: ', recipe);
       recipe.save(function(err) {
         if (err) {
@@ -143,7 +163,6 @@ app.post('/api/update:id', function(req, res, next) {
         }
         res.send(200, "Saved to DB");
       });
-    }
   });
 });
 
