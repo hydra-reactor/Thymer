@@ -5,9 +5,9 @@
     .module('thymer')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['authService'];
+  LoginController.$inject = ['authService', 'lock'];
 
-  function LoginController(authService) {
+  function LoginController(authService, lock) {
 
     console.log('login controller is clicked');
 

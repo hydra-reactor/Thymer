@@ -6,7 +6,9 @@
     .module('thymer')
     .run(run);
 
-  function run($http, $location, $rootScope, authService, lock) {
+  run.$inject = ['$http', '$location', '$rootScope', 'authService', 'lock', 'authManager'];
+
+  function run($http, $location, $rootScope, authService, lock, authManager) {
 
     console.log('RUN run');
     if ($location.$$path === '/cooking')

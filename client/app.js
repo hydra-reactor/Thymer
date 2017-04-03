@@ -11,11 +11,11 @@
     'ngRoute',
     'auth0.lock',
     'angular-jwt',
-    // 'ui.router',
+    'ui.router',
     'angularUtils.directives.dirPagination'
   ])
   .factory('Recipes', Recipes);
-  Recipes.$inject = ['$http'];
+  Recipes.$inject = ['$http', '$location', '$rootScope'];
 
 // this first step is needed to redirect on page reloads within the cooking tab
   // Has been moved to the app.run.js file. Will leave commented out here just in case. -m

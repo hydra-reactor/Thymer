@@ -22,12 +22,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
     <!-- Angular ngRoute -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"> </script>
+    <!-- Angular Ui Router -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Thymer</title>
   </head>
   <body>
     <div ng-app="thymer">
-        <div ng-view></div> <!-- Or should this div be ui-view? -m -->
+        <div ui-view></div> <!-- Or should this div be ui-view? -m -->
     </div>
 
     <!-- Angular Modules -->
@@ -43,12 +45,12 @@
     <script src="bower_components/angular-lock/dist/angular-lock.js"></script>
     <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <script src="app.js"></script>
-    <script src="app.run.js"></script>
     <script src="routes.js"></script>
-    <script src="components/auth/auth.service.js"></script>
+    <script src="partials/searchRecipes/dirPagination.js"></script>
+    <script src="app.run.js"></script>
     <script src="components/home/home.controller.js"></script>
     <script src="components/login/login.controller.js"></script>
-    <script src="partials/searchRecipes/dirPagination.js"></script>
+    <script src="components/auth/auth.service.js"></script>
 
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

@@ -6,6 +6,8 @@
     .module('thymer')
     .service('authService', authService);
 
+  authService.$inject = ['lock', 'authManager'];
+
   function authService(lock, authManager) {
 
     function login() {
@@ -32,6 +34,7 @@
 
     return {
       login: login,
+      logout: logout,
       registerAuthenticationListener: registerAuthenticationListener
     };
   }

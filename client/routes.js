@@ -1,10 +1,10 @@
 (function () {
 
   angular.module('thymer')
-  // .config(config); // Auth0 setup. -m
+  .config(config); // Auth0 setup. -m
 
   // More Auth0 setup. -m
-  // config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
+  config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
 
    // We need to merge Auth0 config setup with Dima's. -m
   function config($stateProvider, lockProvider, $urlRouterProvider) {
@@ -55,9 +55,10 @@
     $urlRouterProvider.otherwise('/home');
   }
 
-// .config(['$routeProvider', function($routeProvider) {
+// function config($routeProvider) {
 //   console.log('Config run');
-// var dimaconfig = 'Dima config'
+//   var dimaconfig = 'Dima config';
+
 //   $routeProvider
 //   .when('/', {
 //     templateUrl: 'partials/home/home.html',
@@ -82,6 +83,6 @@
 //   .otherwise({
 //     redirectTo: '/'
 //   });
-// }]);
+// }
 
 })();
