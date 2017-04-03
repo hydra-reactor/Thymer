@@ -56,6 +56,17 @@ body {
   font-family: 'Comfortaa', cursive;
 }
 
+.pagination-container {
+  margin-bottom: -10px;
+  margin-top: -5px;
+  text-align: center;
+
+}
+
+.pagination {
+  display: inline-block;
+}
+
 /*-------------------------GENERALIZED FONT STYLING-------------------------*/
 
 p{
@@ -124,7 +135,9 @@ label {
   background-color: #E9EBE3;
   border: 10px solid #edf0f4;
   border-radius: 5px;
-  box-shadow: 10px 10px 20px #888888
+  box-shadow: 10px 10px 20px #888888;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .submit-recipe,
@@ -324,5 +337,18 @@ input:checked + .slider:before {
   background-color: #95D2DC;
   border: 10px solid #edf0f4;
   border-radius: 5px;
-  box-shadow: 10px 10px 20px #888888
+  box-shadow: 10px 10px 20px #888888;
+  padding: 10px;
+}
+
+.comment-form {
+
+}
+
+.username {
+
+}
+
+.comment {
+  margin-top: 12px;
 }

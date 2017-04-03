@@ -115,10 +115,17 @@
     <div class="col-xs-12">
       <h3>Add Comment</h3>
       <div>
-        <input type="text" class="form-control" ng-model="username" placeholder="your name"/>
+        <div class="username">
+          <span>Username: </span>
+        </div>
+
+        <input type="text" class="form-control comment-form" ng-model="username" placeholder="your name"/>
       </div>
       <div>
-        <input type="text" class="form-control" ng-model="text" placeholder="enter comment"/>
+        <div class="comment">
+          <span>Comment: </span>
+        </div>
+        <input type="text" class="form-control comment-form" ng-model="text" placeholder="enter comment"/>
       </div>
       <br/>
       <div style="text-align: center;">
