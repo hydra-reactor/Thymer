@@ -38,7 +38,6 @@ angular.module('thymer.cooking', [])
         }
         $scope.stepIndex = 0;
 
-
         //
     };
   });
@@ -202,6 +201,7 @@ angular.module('thymer.cooking', [])
     }
 
   };
+
 
 
 
