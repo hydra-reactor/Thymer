@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="thymer">
+  <head>
+
+    <!-- Needed for Angularjs HTML mode -->
+    <base href="/">
+
+    <!-- Tell social bots this site has dynamic JS content that needs to be crawled -->
+    <!-- <meta name="fragment" content="!"> -->
+
+    <!-- Site metadata -->
+    <meta name="description" content="<%- metaTagsDescription %>" />
+    <meta name="robots" content="<%- metaTagsRobots %>" />
+    <meta name="keywords" content="<%- metaTagsKeyWords %>" />
+
+    <!-- Facebook meta tags-->
+    <meta property="og:type"  content="<%- metaTagsType %>" />
+    <meta property="og:title" content="<%- metaTagsTitle %>" />
+    <meta property="og:image" content="<%- metaTagsImg %>" />
+    <meta property="og:url"   content="<%- metaTagsUrl %>" />
+    <meta property="og:description" content="<%- metaTagsDescription %>" />
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="<%- metaTagsUrl %>">
+    <meta name="twitter:title" content="<%- metaTagsTitle %>">
+    <meta name="twitter:description" content="<%- metaTagsDescription %>">
+    <meta name="twitter:image" content="<%- metaTagsImg %>">
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Comfortaa" rel="stylesheet">
+    <meta charset="utf-8">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+
+    <!-- FlipClock Plug-In -->
+    <link rel="stylesheet" href="flipclock/flipclock.css">
+    <script src="flipclock/flipclock.js"></script>
+
+    <!-- Tether -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+    <!-- Angular ngRoute -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"> </script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <div ng-view></div>
+
+    <!-- Angular Modules -->
+    <script src="partials/cooking/cooking.js"></script>
+    <script src="partials/home/home.js"></script>
+    <script src="partials/newRecipe/newRecipe.js"></script>
+    <script src="partials/searchRecipes/searchRecipes.js"></script>
+    <script src="partials/viewRecipe/viewRecipe.js"></script>
+    <!-- <script src="client/partials/auth/auth.js"></script> -->
+    <script src="app.js"></script>
+    <script src="routes.js"></script>
+    <script src="partials/searchRecipes/dirPagination.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--Axios-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </body>
+</html>

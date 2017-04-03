@@ -1,8 +1,8 @@
 <ul ng-click="stopCooking()" class="nav nav-tabs nav-bar">
-  <li><a href="#/home">Home</a></li>
-  <li><a href="#/newRecipe">New Recipe</a></li>
-  <li><a href="#/searchRecipes">All Recipes</a></li>
-  <li class="active cookingTab"><a href="#/cooking">Cooking</a></li>
+  <li><a href="/home">Home</a></li>
+  <li><a href="/newRecipe">New Recipe</a></li>
+  <li><a href="/searchRecipes">All Recipes</a></li>
+  <li class="active cookingTab"><a href="/cooking">Cooking</a></li>
   <img class="logo" align="right" src="../Logo-2.png">
 </ul>
 
@@ -19,10 +19,10 @@
           <h3>Time Until Next Step</h3>
         </div>
         <div class="col-xs-2" style="padding-top: 25px;">
-          <label class="switch">
+<!--           <label class="switch">
             <input id="checkbox" ng-click="toggleCooking()" type="checkbox">
             <div class="slider round"></div>
-          </label>
+          </label> -->
         </div>
       </div>
       <div class="row-fluid">
@@ -45,8 +45,9 @@
       <div class="row-fluid">
         <h3>How to Cook {{recipe.title}}</h3>
           <ul class="list-group">
-              <li id="step{{$index}}" ng-repeat="step in cookSteps" class="list-group-item">
+              <li id="step{{$index}}" ng-repeat="step in cookSteps" class="list-group-item" ng-click="setStepIndex(step); stepsExecute(stepIndex)">
                 <small>{{step.totalMinutes}} min</small>
+                  <span ng-show="custom" class="glyphicon glyphicon-ok-circle"></span>
                 <p>{{step.description}}</p>
                 <video id="vid{{$index}}" controls autoplay name="media" class="vsc-initialized">
                 </video>

@@ -27,12 +27,12 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 5px 5px 10px #888888;
+  box-shadow: 5px 5px 10px #666666;
   cursor: pointer;
 }
 
 .recipe:hover {
-  border-color: #E3BCC3;
+  border-color: #BF8FB3;
 }
 
 .recipeTitle {
@@ -54,6 +54,17 @@ body {
   text-shadow: 1px 1px 3px black;
   list-style-type: none;
   font-family: 'Comfortaa', cursive;
+}
+
+.pagination-container {
+  margin-bottom: -10px;
+  margin-top: -5px;
+  text-align: center;
+
+}
+
+.pagination {
+  display: inline-block;
 }
 
 /*-------------------------GENERALIZED FONT STYLING-------------------------*/
@@ -124,7 +135,9 @@ label {
   background-color: #E9EBE3;
   border: 10px solid #edf0f4;
   border-radius: 5px;
-  box-shadow: 10px 10px 20px #888888
+  box-shadow: 10px 10px 20px #888888;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .submit-recipe,
@@ -207,6 +220,30 @@ label {
   font-weight: bold;
   background-color: #E9EBE3;
 }
+
+.active-list-group-item{
+  color: #874B78;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #FFE372;
+}
+
+.completed-list-group-item{
+  color: #E9EBE3;
+  font-size: 14px;
+  font-weight: normal;
+  background-color: #874B78;
+}
+
+.glyphicon{
+  font-size: 25px;
+  float: right;
+  color: #E9EBE3;
+}
+
+
+/*COMPLETED ITEMS*/
+
 
 #recipe-image{
   width: 96%;
@@ -300,5 +337,47 @@ input:checked + .slider:before {
   background-color: #95D2DC;
   border: 10px solid #edf0f4;
   border-radius: 5px;
-  box-shadow: 10px 10px 20px #888888
+  box-shadow: 10px 10px 20px #888888;
+  padding: 10px;
+}
+
+.comment-form {
+
+}
+
+.username {
+
+}
+
+.comment {
+  margin-top: 12px;
+}
+
+/*-------------------------STAR RATING-------------------------*/
+/*.rating .filled {
+  color: #21568b;
+}*/
+
+.star-rating {
+	margin: 0;
+	padding: 0;
+	/*display: inline-block;*/
+}
+
+.star-rating .star {
+	padding: 1px;
+	color: #ddd;
+	font-size: 20px;
+	text-shadow: .05em .05em #aaa;
+	list-style-type: none;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.star-rating .star.filled {
+	color: #fd0;
+}
+
+.star-rating.readonly .star.filled {
+	color: #666;
 }

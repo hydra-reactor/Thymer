@@ -1,4 +1,4 @@
-angular.module('thymer.viewRecipe', [])
+angular.module('thymer.viewRecipe', ['thymer.rating'])
 
 .controller('viewRecipeController', function($scope, $rootScope, $location, $http, $routeParams, Recipes) {
   $scope.id = $routeParams.id;
@@ -55,8 +55,23 @@ angular.module('thymer.viewRecipe', [])
     // update comments in the browser
     $scope.recipe.comments.push(obj);
 
+    var endpoint = '/api/update/' + $scope.id;
+
     // post update to the server
-    Recipes.updateRecipe(obj, $scope.id);
+    Recipes.updateRecipe(obj, endpoint);
+  };
+
+
+  $scope.submitRating = function (rating) {
+    console.log('my rating', rating);
+    var obj = {};
+    obj.rating = rating;
+    var endpoint = '/api/updaterating/' + $scope.id;
+
+    // $scope.recipe.rating = rating;
+
+    // post update to the server
+    Recipes.updateRecipe(obj, endpoint);
   };
 
   // get request to get a specific recipe by id
@@ -68,6 +83,14 @@ angular.module('thymer.viewRecipe', [])
       console.log('getRecipeById res.data: ', res.data);
       $scope.recipe = res.data;
       $scope.timeDisplay = $scope.timeCalculator(res.data.time);
+
+      $rootScope.social = {
+        title: $scope.recipe.title,
+        description: $scope.recipe.description,
+        image: $scope.recipe.image,
+        url: 'https://hydrathymer.herokuapp.com/viewRecipe/' + $scope.id
+      }
+
       return res.data;
     });
   };
@@ -79,4 +102,27 @@ angular.module('thymer.viewRecipe', [])
   }
 
   $scope.getRecipeById($scope.id);
+
+
+
+
+  $scope.starRating = function () {
+    var el = document.querySelector('#el');
+
+    // current rating, or initial rating
+    var currentRating = 4;
+
+    // max rating, i.e. number of stars you want
+    var maxRating= 5;
+
+    // callback to run after setting the rating
+    // var callback = function(rating) { alert(rating); };
+    var callback = function(rating) { alert(rating); };
+
+    // rating instance
+    var myRating = rating(el, currentRating, maxRating, $scope.submitRating);
+    // var myRating = rating(el, currentRating, maxRating, callback);
+  };
+
+  $scope.starRating();
 });

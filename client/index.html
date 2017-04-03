@@ -1,14 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="thymer">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Needed for Angularjs HTML mode -->
+    <base href="/">
+
+    <!-- Tell social bots this site has dynamic JS content that needs to be crawled -->
+    <!-- <meta name="fragment" content="!"> -->
+
+    <!-- Metadata for crawlers -->
+    <title>{{ social.title }}</title>
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="Thymer: The Most Fun You've Ever Had Cooking" />
+    <meta property="og:description"        content="Thymer is a fun and easy way to share your favorite recipes and cook recipes shared by others. Follow along with step-by-step instructions that are dictated as you cook." />
+    <meta property="og:image"              content="https://s-media-cache-ak0.pinimg.com/736x/2c/c0/4e/2cc04e2665e13e81ba1a9171586654f0.jpg" />
+    <meta property="og:image"              content="http://i.imgur.com/VKR8Yry.jpg" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Comfortaa" rel="stylesheet">
-
+    <meta charset="utf-8">
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+
+    <!-- Five Star Rating css -->
+    <!-- https://github.com/callmenick/five-star-rating -->
+    <link rel="stylesheet" href="fivestars/css/rating.min.css">
+    <link rel="stylesheet" href="fivestars/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fivestars/css/style.min.css">
 
 
     <!-- FlipClock Plug-In -->
@@ -25,12 +45,15 @@
     <!-- Angular Ui Router -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Thymer</title>
   </head>
   <body>
     <div ng-app="thymer">
         <div ui-view></div> <!-- Or should this div be ui-view? -m -->
     </div>
+
+    <!-- <ul class="c-rating" id="el">
+
+    </ul> -->
 
     <!-- Angular Modules -->
     <script src="partials/cooking/cooking.js"></script>
@@ -38,6 +61,7 @@
     <script src="partials/newRecipe/newRecipe.js"></script>
     <script src="partials/searchRecipes/searchRecipes.js"></script>
     <script src="partials/viewRecipe/viewRecipe.js"></script>
+    <script src="partials/viewRecipe/starRating.js"></script>
     <!-- <script src="client/partials/auth/auth.js"></script> -->
     <!-- Auth0 -->
     <script src="bower_components/auth0-lock/build/lock.js"></script>
@@ -51,6 +75,28 @@
     <script src="components/home/home.controller.js"></script>
     <script src="components/login/login.controller.js"></script>
     <script src="components/auth/auth.service.js"></script>
+
+    <!-- Five Star Rating js -->
+    <script src="fivestars/js/dist/rating.min.js"></script>
+
+    <!-- <script type="text/javascript">
+        var el = document.querySelector('#el');
+
+        // current rating, or initial rating
+        var currentRating = 1;
+
+        // max rating, i.e. number of stars you want
+        var maxRating= 5;
+
+        // callback to run after setting the rating
+        var callback = function(rating) { alert(rating); };
+
+        // rating instance
+        var myRating = rating(el, currentRating, maxRating, callback);
+
+    </script> -->
+
+
 
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
