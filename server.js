@@ -4,6 +4,7 @@ var path = require('path');
 var mongo = require('mongo');
 var mongoose = require('mongoose');
 var Recipe = require('./models');
+var path = require('path');
 var app = express();
 
 /*CONNECT TO DATABASE*/
@@ -19,7 +20,9 @@ mongoose.connection.once('open', function() {
 /*SET UP ROUTER FOR SOCIAL BOTS*/
 var nonSPArouter = express.Router();
 
-app.use(express.static(__dirname + '/client'));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+app.use(express.static(__dirname + '/client')); // We should be able to remove this. -m
 app.use(bodyParser.json());
 
 // Middleware to check if the user-agent is a social sharing bot

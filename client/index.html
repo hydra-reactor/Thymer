@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="thymer">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!-- Needed for Angularjs HTML mode -->
     <base href="/">
@@ -15,7 +17,6 @@
     <meta property="og:description"        content="Thymer is a fun and easy way to share your favorite recipes and cook recipes shared by others. Follow along with step-by-step instructions that are dictated as you cook." />
     <meta property="og:image"              content="https://s-media-cache-ak0.pinimg.com/736x/2c/c0/4e/2cc04e2665e13e81ba1a9171586654f0.jpg" />
     <meta property="og:image"              content="http://i.imgur.com/VKR8Yry.jpg" />
-
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Comfortaa" rel="stylesheet">
     <meta charset="utf-8">
@@ -41,10 +42,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
     <!-- Angular ngRoute -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"> </script>
+    <!-- Angular Ui Router -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
-    <div ng-view></div>
+    <div ng-app="thymer">
+        <div ui-view></div> <!-- Or should this div be ui-view? -m -->
+    </div>
 
     <!-- <ul class="c-rating" id="el">
 
@@ -58,9 +63,18 @@
     <script src="partials/viewRecipe/viewRecipe.js"></script>
     <script src="partials/viewRecipe/starRating.js"></script>
     <!-- <script src="client/partials/auth/auth.js"></script> -->
+    <!-- Auth0 -->
+    <script src="bower_components/auth0-lock/build/lock.js"></script>
+    <script src="bower_components/auth0.js/build/auth0.js"></script>
+    <script src="bower_components/angular-lock/dist/angular-lock.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <script src="app.js"></script>
     <script src="routes.js"></script>
     <script src="partials/searchRecipes/dirPagination.js"></script>
+    <script src="app.run.js"></script>
+    <script src="components/home/home.controller.js"></script>
+    <script src="components/login/login.controller.js"></script>
+    <script src="components/auth/auth.service.js"></script>
 
     <!-- Five Star Rating js -->
     <script src="fivestars/js/dist/rating.min.js"></script>

@@ -1,0 +1,27 @@
+{
+  "name": "thymer",
+  "description": "The most fun you can have cooking",
+  "main": "index.js",
+  "authors": [
+    "and Ryan"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "cooking"
+  ],
+  "homepage": "https://github.com/emma4evr/Thymer",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "auth0-lock": "^10.14.0",
+    "auth0.js": "^8.5.0",
+    "angular-lock": "^2.0.2",
+    "angular-jwt": "^0.1.9"
+  }
+}
