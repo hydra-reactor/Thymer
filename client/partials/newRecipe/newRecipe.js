@@ -1,6 +1,8 @@
 angular.module('thymer.newRecipe', [])
 
-.controller('newRecipeController', function($scope, Recipes, $location) {
+.controller('newRecipeController', function($scope, Recipes, $location, $rootScope) {
+  $rootScope.social.title = 'New Recipe';
+  $rootScope.social.description = 'Add a new recipe.';
 
   Recipes.visible();
 
@@ -149,7 +151,7 @@ angular.module('thymer.newRecipe', [])
   //////Submit Recipe to DB//////////
   $scope.submitRecipe = function() {
 
-    //if fany fields are not complete, do not submit
+    //if any fields are not complete, do not submit
     $scope.incompleteFields = [];
 
     if (!$scope.servings) {
@@ -174,12 +176,12 @@ angular.module('thymer.newRecipe', [])
       $scope.incompleteFields.push('description');
     }
 
-    if ($scope.incompleteFields.length) {
+    // if ($scope.incompleteFields.length) {  // switched off checks for empty fields
+    if (false) {
       //show modal
       $('#incompleteFieldsModal').modal('show');
     } else {
       var ingredients = $scope.ingredientList.map(ingredientObj => ingredientObj.description);
-
       var cookTime = function() {
         var totalTime = 0;
         for (var i = 0; i < $scope.steps.length; i++) {
@@ -200,6 +202,10 @@ angular.module('thymer.newRecipe', [])
         $scope.carnivoritarian
       ].filter(v => v !== false );
 
+      var tags = $scope.tags;
+      // split into array -> trim each element -> filter out empty values
+      tags = tags.split(',').map(str => str.trim()).filter(str => str);
+
       var recipe = {
         time: cookTime(), // done
         servings: $scope.servings,  // done
@@ -209,10 +215,10 @@ angular.module('thymer.newRecipe', [])
         author: $scope.author, //done
         cuisine: $scope.cuisine, //done
         diet: diet, //done
+        tags: tags,
         image: $scope.image, //done
         description: $scope.description //done
       };
-
       //send to server and db
       Recipes.addRecipe(recipe)
         .then(function() {

@@ -1,8 +1,8 @@
 <ul class="nav nav-tabs nav-bar">
-      <li><a href="#/home">Home</a></li>
-      <li><a href="#/newRecipe">New Recipe</a></li>
-      <li class="active"><a href="#/searchRecipes">All Recipes</a></li>
-      <li class="cookingTab"><a href="#/cooking">Cooking</a></li>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/newRecipe">New Recipe</a></li>
+      <li class="active"><a href="/searchRecipes">All Recipes</a></li>
+      <li class="cookingTab"><a href="/cooking">Cooking</a></li>
       <img class="logo" align="right" src="../Logo-2.png">
     </ul>
   <div class="row"></div>
@@ -16,7 +16,7 @@
     <div class="container">
       <div class="col-md-6 col-md-offset-3">
         <div class="row" dir-paginate="recipe in recipes | filter: search | orderBy: 'title' | itemsPerPage: 5">
-          <div class="recipe col-md-12" ng-style="{'background-image':'url({{recipe.image}})'}" ng-click="updateCurrentRecipe(recipe)">
+          <div class="recipe col-md-12" ng-style="{'background-image':'url({{recipe.image}})'}" ng-click="updateCurrentRecipe(recipe, recipe['_id'])">
             <h1 class="recipeTitle">{{ recipe.title }}</h1>
             <ul>
               <li class="recipeDescription">{{ recipe.description }}</li>

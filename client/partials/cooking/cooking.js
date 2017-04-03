@@ -1,8 +1,12 @@
 angular.module('thymer.cooking', [])
 
-.controller('cookingController', function($scope, Recipes, $location) {
-   // toggles Cooking tab visibility in the nav bar
+.controller('cookingController', function($scope, Recipes, $location, $rootScope) {
+  $rootScope.social.title = 'Cooking';
+
+  // toggles Cooking tab visibility in the nav bar
   Recipes.visible();
+
+  $scope.go = Recipes.go;
 
   // allows user to start and stop the timer by clicking on the clock
   // and by pressing the 'space' bar. Also styles slider based on these events
@@ -27,6 +31,14 @@ angular.module('thymer.cooking', [])
     });
     // stops the timer whenever user navigates to another tab
     window.onhashchange = function () {
+
+        $scope.stopCooking();
+        for(var i = 0; i = $scope.cookSteps.length; i++) {
+          $('#vid' + i).get(0).pause();
+        }
+        $scope.stepIndex = 0;
+
+
         //
     };
   });
@@ -171,6 +183,7 @@ angular.module('thymer.cooking', [])
     //go through everything else
 
   setInterval(function() {
+
     $(window).on('hashchange', function() {
       $scope.stopCooking();
       clearInterval();
@@ -187,6 +200,15 @@ angular.module('thymer.cooking', [])
   if (!stepClock.face.factory.running) {
     $scope.stepsExecute(index + 1);
   }
+
+    if (!stepClock.face.factory.running) {
+      $scope.stepsExecute(index + 1);
+    // } else if ($scope.stepIndex !== index) {
+    //   clearInterval();
+    //   $scope.stepsExecute(index);
+    }
+  }, 1000);
+
 };
 
 

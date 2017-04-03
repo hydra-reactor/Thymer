@@ -1,9 +1,9 @@
 <!--Nav Bar-->
 <ul class="nav nav-tabs nav-bar">
-  <li class="nav-font"><a href="#/index">Home</a></li>
-  <li class="active"><a href="#/newRecipe">New Recipe</a></li>
-  <li class="nav-font"><a href="#/searchRecipes">All Recipes</a></li>
-  <li class="nav-font cookingTab"><a href="#/cooking">Cooking</a></li>
+  <li class="nav-font"><a href="/index">Home</a></li>
+  <li class="active"><a href="/newRecipe">New Recipe</a></li>
+  <li class="nav-font"><a href="/searchRecipes">All Recipes</a></li>
+  <li class="nav-font cookingTab"><a href="/cooking">Cooking</a></li>
   <img class="logo" align="right" src="../Logo-2.png">
 </ul>
 <br>
@@ -191,6 +191,16 @@
       </table>
     </div>
 
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Tags</h3>
+        <div>
+          <input type="text" class="form-control" ng-model="tags" placeholder="enter tags, separated by comma"/>
+        </div>
+      </div>
+    </div>
+    <br/>
     <div style="text-align: center;">
       <button ng-click="submitRecipe()" style="border-radius:5px;" class="bg-primary submit-recipe"> Submit Recipe</button>
     </div>

@@ -20,15 +20,19 @@ body {
 
 /*-------------------------SEARCH RECIPES STYLING-------------------------*/
 .recipe {
-  border: 10px solid #edf0f4;
+  border: 7px solid #edf0f4;
   border-radius: 5px;
   margin: 10px;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 10px 10px 20px #888888;
+  box-shadow: 5px 5px 10px #666666;
   cursor: pointer;
+}
+
+.recipe:hover {
+  border-color: #BF8FB3;
 }
 
 .recipeTitle {
@@ -171,7 +175,7 @@ label {
   border-radius: 15px;
 }
 
-.cooking-title{
+.cooking-title {
   margin-top: 15px;
   text-align: center;
   font-family: 'Lobster Two', cursive;
@@ -182,6 +186,11 @@ label {
   box-shadow: 10px 10px 28px -12px rgba(0,0,0,0.75);
   border-radius: 15px;
   background-color: #E9EBE3;
+  cursor: pointer;
+}
+
+.cooking-title:hover {
+  color: #874B78;
 }
 
 .list-group{

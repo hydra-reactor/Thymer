@@ -9,6 +9,12 @@ var recipeSchema = new mongoose.Schema({
     author: String,
     cuisine: String,
     diet: Array,
+    tags: Array,
+    comments: [{
+      date: Date,
+      username: String,
+      text: String
+    }],
     image: String,
     description: String
 });
