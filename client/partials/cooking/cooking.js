@@ -182,34 +182,26 @@ angular.module('thymer.cooking', [])
 
     //go through everything else
 
-  setInterval(function() {
+    setInterval(function() {
 
-    $(window).on('hashchange', function() {
-      $scope.stopCooking();
-      clearInterval();
-      // for (var i = 0; i = $scope.cookSteps.length; i++) {
-      //   $('#vid' + i).get(0).pause();
-      // }
-      // $scope.stepIndex = 0;
-      console.log('The new Step Index is: ' + $scope.stepIndex);
-    });
-    // } else if ($scope.stepIndex !== index) {
-    //   clearInterval();
-    //   $scope.stepsExecute(index);
-  }, 1000);
-  if (!stepClock.face.factory.running) {
-    $scope.stepsExecute(index + 1);
-  }
-
+      $(window).on('hashchange', function() {
+        $scope.stopCooking();
+        clearInterval();
+        // for (var i = 0; i = $scope.cookSteps.length; i++) {
+        //   $('#vid' + i).get(0).pause();
+        // }
+        // $scope.stepIndex = 0;
+        console.log('The new Step Index is: ' + $scope.stepIndex);
+      });
+      // } else if ($scope.stepIndex !== index) {
+      //   clearInterval();
+      //   $scope.stepsExecute(index);
+    }, 1000);
     if (!stepClock.face.factory.running) {
       $scope.stepsExecute(index + 1);
-    // } else if ($scope.stepIndex !== index) {
-    //   clearInterval();
-    //   $scope.stepsExecute(index);
     }
-  }, 1000);
 
-};
+  };
 
 
 
