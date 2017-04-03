@@ -71,7 +71,6 @@ nonSPArouter.get('/viewRecipe/:id', function(req, res, next) {
 
 });
 
-
 /*SERVER ROUTING*/
 app.get('/api/recipes', function(req, res, next) {
   Recipe.find(function(err, data) {
