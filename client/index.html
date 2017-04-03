@@ -23,6 +23,13 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 
+    <!-- Five Star Rating css -->
+    <!-- https://github.com/callmenick/five-star-rating -->
+    <link rel="stylesheet" href="fivestars/css/rating.min.css">
+    <link rel="stylesheet" href="fivestars/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fivestars/css/style.min.css">
+
+
     <!-- FlipClock Plug-In -->
     <link rel="stylesheet" href="flipclock/flipclock.css">
     <script src="flipclock/flipclock.js"></script>
@@ -39,16 +46,43 @@
   <body>
     <div ng-view></div>
 
+    <!-- <ul class="c-rating" id="el">
+
+    </ul> -->
+
     <!-- Angular Modules -->
     <script src="partials/cooking/cooking.js"></script>
     <script src="partials/home/home.js"></script>
     <script src="partials/newRecipe/newRecipe.js"></script>
     <script src="partials/searchRecipes/searchRecipes.js"></script>
     <script src="partials/viewRecipe/viewRecipe.js"></script>
+    <script src="partials/viewRecipe/starRating.js"></script>
     <!-- <script src="client/partials/auth/auth.js"></script> -->
     <script src="app.js"></script>
     <script src="routes.js"></script>
     <script src="partials/searchRecipes/dirPagination.js"></script>
+
+    <!-- Five Star Rating js -->
+    <script src="fivestars/js/dist/rating.min.js"></script>
+
+    <!-- <script type="text/javascript">
+        var el = document.querySelector('#el');
+
+        // current rating, or initial rating
+        var currentRating = 1;
+
+        // max rating, i.e. number of stars you want
+        var maxRating= 5;
+
+        // callback to run after setting the rating
+        var callback = function(rating) { alert(rating); };
+
+        // rating instance
+        var myRating = rating(el, currentRating, maxRating, callback);
+
+    </script> -->
+
+
 
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
