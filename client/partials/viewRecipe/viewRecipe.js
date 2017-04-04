@@ -103,9 +103,6 @@ angular.module('thymer.viewRecipe', ['thymer.rating'])
 
   $scope.getRecipeById($scope.id);
 
-
-
-
   $scope.starRating = function () {
     var el = document.querySelector('#el');
 

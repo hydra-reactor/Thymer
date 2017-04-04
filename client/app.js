@@ -30,13 +30,6 @@ angular.module('thymer', [
 
   // get request to get all the recipes
   function getRecipes(cb) {
-    // factoryData = $rootScope.factoryData || factoryData;
-    // console.log('factoryData ', factoryData);
-    // console.log('getRecipes2: factoryData ', factoryData);
-    // if (factoryData) {
-    //   console.log('if factoryData', factoryData);
-    //   return factoryData;
-    // }
     return $http ({
       method: 'GET',
       url: '/api/recipes'
@@ -50,17 +43,6 @@ angular.module('thymer', [
       return res.data;
     });
   };
-  // function getRecipes() {
-  //   return $http ({
-  //     method: 'GET',
-  //     url: '/api/recipes'
-  //   }).then(function(res) {
-  //     console.log('getRecipes: ', res.data);
-  //     factoryData = res.data;
-  //     console.log('factoryData!',factoryData);
-  //     return res.data;
-  //   });
-  // };
 
   // post request to update recipes
   var updateRecipe = function(recipe, endpoint) {
